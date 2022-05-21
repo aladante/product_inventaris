@@ -56,7 +56,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
 # super sensi data
 scrts.json
 # secrets (api keys etc not in version control pls)
@@ -82,3 +81,13 @@ assets/bundles
 # Java
 jdt.ls-java-project
 .metadata
+
+# javascript
+node_modules
+node_modules/
+.cache/
+dist/
+.env
+.DS_Store
+coverage/
+.vscode/
