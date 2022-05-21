@@ -1,28 +1,76 @@
 package com.vaccinatiepunt.backendinventaris.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "user_detail")
+public class User implements UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	Long id;
+	private String username;
+	private String password;
+	private String roleCode;
+	private boolean isAdmin;
+	private LocalDateTime created_at;
 
-	String username;
-	String password;
-	boolean isAdmin;
+	public String getRoleCode() {
+		return roleCode;
+	}
 
-	LocalDateTime created_at;
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }
