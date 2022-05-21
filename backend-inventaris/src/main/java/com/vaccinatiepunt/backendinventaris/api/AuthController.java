@@ -22,7 +22,7 @@ public class AuthController {
 
 	@GetMapping("/welcome")
 	public String welcome() {
-		return "Welcome to javatechie !!";
+		return "Welcome!";
 	}
 
 	@PostMapping("/authenticate")
@@ -31,7 +31,9 @@ public class AuthController {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 		} catch (Exception ex) {
-			throw new Exception("inavalid username/password");
+			System.out.println(ex);
+			throw ex;
+			// throw new Exception("inavalid username/password");
 		}
 		return jwtUtils.generateToken(authRequest.getUserName());
 	}
