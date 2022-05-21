@@ -265,6 +265,9 @@ COPY public.product_at_location (product_at_location_id, amount, created_at, loc
 --
 
 COPY public.roles (id, name) FROM stdin;
+1	ROLE_USER
+2	ROLE_MODERATOR
+3	ROLE_ADMIN
 \.
 
 
@@ -309,7 +312,7 @@ SELECT pg_catalog.setval('public.product_product_id_seq', 1, false);
 -- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.roles_id_seq', 1, false);
+SELECT pg_catalog.setval('public.roles_id_seq', 3, true);
 
 
 --
@@ -399,5 +402,7 @@ ALTER TABLE ONLY public.product_at_location
     ADD CONSTRAINT fkmrn31spnyk9be88dfqhh05quv FOREIGN KEY (location_id) REFERENCES public.location(location_id);
 
 
-
+--
+-- PostgreSQL database dump complete
+--
 

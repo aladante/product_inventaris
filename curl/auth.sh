@@ -1,3 +1,3 @@
-curl -X POST localhost:8080/api/authenticate \
+curl -X POST localhost:8080/api/auth/signin \
 	-H "Content-Type: application/json" \
-	-d '{"username": "admin", "password": "admin"}'
+	-d '{"username": "adminn", "password": "adminn", "role":"admin"}'
