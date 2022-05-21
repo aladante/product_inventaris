@@ -1,4 +1,5 @@
 FROM openjdk:17-jdk-slim-buster
+MAINTAINER Jan Dorresteijn
 WORKDIR /app
 
 COPY app/build/lib/* build/lib/
