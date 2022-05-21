@@ -26,7 +26,6 @@ public class User implements UserDetails {
 
 	private String username;
 	private String password;
-	private String role;
 	private boolean isAdmin;
 	private LocalDateTime created_at;
 
@@ -44,14 +43,6 @@ public class User implements UserDetails {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public boolean isAdmin() {
