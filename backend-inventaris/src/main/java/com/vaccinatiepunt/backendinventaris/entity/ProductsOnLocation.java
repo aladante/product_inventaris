@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "product_at_location")
-class CourseRegistration {
+class ProductsOnLocation {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
