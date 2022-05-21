@@ -3,7 +3,10 @@ package com.vaccinatiepunt.backendinventaris.entity;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -17,18 +20,62 @@ import lombok.Data;
 @Table(name = "user_detail")
 public class User implements UserDetails {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+
 	private String username;
 	private String password;
-	private String roleCode;
+	private String role;
 	private boolean isAdmin;
 	private LocalDateTime created_at;
 
-	public String getRoleCode() {
-		return roleCode;
+	public User() {
 	}
 
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public LocalDateTime getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(LocalDateTime created_at) {
+		this.created_at = created_at;
+	}
+
+	public String getRoles() {
+		return role;
+	}
+
+	public void setRoles(String role) {
+		this.role = role;
 	}
 
 	public void setUsername(String username) {
