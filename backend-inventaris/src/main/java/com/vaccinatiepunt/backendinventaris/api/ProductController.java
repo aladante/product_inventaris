@@ -1,8 +1,16 @@
 package com.vaccinatiepunt.backendinventaris.api;
 
+import com.vaccinatiepunt.backendinventaris.entity.Product;
+import com.vaccinatiepunt.backendinventaris.payload.response.ProductResponse;
+import com.vaccinatiepunt.backendinventaris.repo.ProductRepository;
+import com.vaccinatiepunt.backendinventaris.repo.RoleRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,15 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/product")
 public class ProductController {
 
+	@Autowired
+	ProductRepository productRepository;
+
 	@GetMapping("/all")
 	public String allAccess() {
 		return "Public Content.";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/product/{name}")
 	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String getProduct() {
-		return "User Content.";
+	public String getProduct(@PathVariable String name) {
+		Product product = productRepository.findByName(name)
+				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+
+		return "pl";
+
 	}
 
 	@PostMapping("/mod")
