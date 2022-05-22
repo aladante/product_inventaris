@@ -17,6 +17,7 @@ import lombok.Data;
 @Entity
 @Table(name = "product")
 public class Product {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
@@ -24,6 +25,6 @@ public class Product {
 
 	@OneToMany(mappedBy = "product")
 	Set<ProductsOnLocation> productsOnLocation;
-
+	String name;
 	Date expireDate;
 }

@@ -54,11 +54,9 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody AuthRequest authRequest) {
 
-		System.out.println("1 here" + authRequest.getUserName());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 
-		System.out.println("here");
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -88,7 +86,6 @@ public class AuthController {
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
-		System.out.println(strRoles);
 		if (strRoles == null) {
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));

@@ -25,6 +25,8 @@ public class Location {
 	@OneToMany(mappedBy = "location")
 	Set<ProductsOnLocation> productsOnLocation;
 
+	String name;
 	String street;
 	int number;
+	String area;
 }

@@ -2,7 +2,6 @@ package com.vaccinatiepunt.backendinventaris.config;
 
 import com.vaccinatiepunt.backendinventaris.config.jwt.AuthEntryPointJwt;
 import com.vaccinatiepunt.backendinventaris.config.jwt.AuthTokenFilter;
-import com.vaccinatiepunt.backendinventaris.config.services.UserDetailsImpl;
 import com.vaccinatiepunt.backendinventaris.config.services.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
