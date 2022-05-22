@@ -2,15 +2,15 @@ package com.vaccinatiepunt.backendinventaris.entity;
 
 public class AuthRequest {
 
-	private String userName;
+	private String username;
 	private String password;
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
