@@ -3,12 +3,15 @@ schema {
     mutation: Mutation
 }
 
-extend type Query {
+type Query {
     listUser: [User]
     getUser(id: ID!): User
+
+    listRole: [Role]
+    getRole(id: ID!): Role
 }
 
-extend type Mutation {
+type Mutation {
     login(input: AuthRequest!) : JwtResponse!
     createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
@@ -26,6 +29,17 @@ type JwtResponse {
     type: String!
 }
 
+type Role {
+    id: ID!
+    name: RoleName!
+}
+
+enum RoleName {
+    USER
+	MOD
+    ADMIN
+}
+
 input SignupRequest {
     username: String!
     password: String!
@@ -35,3 +49,5 @@ input AuthRequest {
     username: String!
     password: String!
 }
+
+
