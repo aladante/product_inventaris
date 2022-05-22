@@ -1,12 +1,9 @@
 package com.vaccinatiepunt.backendinventaris.api;
 
 import com.vaccinatiepunt.backendinventaris.entity.Product;
-import com.vaccinatiepunt.backendinventaris.payload.response.ProductResponse;
 import com.vaccinatiepunt.backendinventaris.repo.ProductRepository;
-import com.vaccinatiepunt.backendinventaris.repo.RoleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
