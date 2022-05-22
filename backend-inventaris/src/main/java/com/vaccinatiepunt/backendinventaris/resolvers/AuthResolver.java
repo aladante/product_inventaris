@@ -1,62 +1,46 @@
-package com.vaccinatiepunt.backendinventaris.graphql.resolvers;
+package com.vaccinatiepunt.backendinventaris.resolvers;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import com.vaccinatiepunt.backendinventaris.config.jwt.JwtUtils;
-import com.vaccinatiepunt.backendinventaris.config.services.UserDetailsImpl;
+import com.vaccinatiepunt.backendinventaris.entity.AuthRequest;
+import com.vaccinatiepunt.backendinventaris.entity.User;
+import com.vaccinatiepunt.backendinventaris.payload.request.LoginRequest;
+import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
 import com.vaccinatiepunt.backendinventaris.payload.response.JwtResponse;
-import com.vaccinatiepunt.backendinventaris.repo.RoleRepository;
-import com.vaccinatiepunt.backendinventaris.repo.UserRepository;
+import com.vaccinatiepunt.backendinventaris.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Component
-public class TokenResolver implements GraphQLMutationResolver {
-	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
+@Validated
+public class AuthResolver implements GraphQLMutationResolver {
 
-	@Autowired
-	AuthenticationManager authenticationManager;
+	UserService userService;
 
-	@Autowired
-	UserRepository userRepository;
+	@PreAuthorize("isAnonymous()")
+	public JwtResponse login(@Valid AuthRequest input) {
+		return userService.login(input);
+	}
 
-	@Autowired
-	RoleRepository roleRepository;
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public User createUser(@Valid SignupRequest signupRequest) {
+		return userService.createUser(signupRequest);
+	}
 
-	@Autowired
-	PasswordEncoder encoder;
-
-	@Autowired
-	JwtUtils jwtUtils;
-
-	public String getToken(String username, String password) {
-
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(username, password));
-
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = jwtUtils.generateJwtToken(authentication);
-		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-		List<String> roles = userDetails.getAuthorities().stream()
-				.map(item -> item.getAuthority())
-				.collect(Collectors.toList());
-
-		return ResponseEntity.ok(new JwtResponse(jwt,
-				userDetails.getId(),
-				userDetails.getUsername(),
-				roles));
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public Boolean deleteUser(long id) {
+		return userService.deleteUser(id);
 	}
 
 }
