@@ -9,8 +9,8 @@ extend type Query {
 }
 
 extend type Mutation {
-    login(input: LoginRequest!) : JwtResponse!
-    createUser(input: UserCreateRequest!) : User!
+    login(input: AuthRequest!) : JwtResponse!
+    createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
 }
 
@@ -18,7 +18,6 @@ type User {
     id: ID!
     username: String!
     password: String!
-    email: String!
     role: Role!
 }
 
@@ -27,13 +26,12 @@ type JwtResponse {
     type: String!
 }
 
-input UserCreateRequest {
+input SignupRequest {
     username: String!
     password: String!
-    email: String!
 }
 
-input LoginRequest {
+input AuthRequest {
     username: String!
     password: String!
 }
