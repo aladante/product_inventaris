@@ -1,4 +1,4 @@
-FROM postgres:11
+FROM postgres:13.7
 
 ARG PG_POSTGRES_PWD=postgres
 ARG DBUSER=postgres

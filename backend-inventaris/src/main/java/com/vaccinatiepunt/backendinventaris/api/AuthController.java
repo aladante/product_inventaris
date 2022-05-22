@@ -93,6 +93,7 @@ public class AuthController {
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
+				System.out.println(role);
 				switch (role) {
 					case "admin":
 						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)

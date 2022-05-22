@@ -1,6 +1,7 @@
 #!/bin/bash
 
-file="/docker-entrypoint-initdb.d/dump.sql"
+file="/docker-entrypoint-initdb.d/dump.pgdata"
+dbname=vaccinatiepunt_inventaris
 
 echo "Restoring DB using $file"
-# psql -U postgres < "$file";
+pg_restore -U postgres --dbname=$dbname --verbose --single-transaction < "$file" || exit 1
