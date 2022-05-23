@@ -18,6 +18,7 @@ import com.vaccinatiepunt.backendinventaris.payload.response.JwtResponse;
 import com.vaccinatiepunt.backendinventaris.repo.RoleRepository;
 import com.vaccinatiepunt.backendinventaris.repo.UserRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -34,12 +35,18 @@ import lombok.experimental.FieldDefaults;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-	final AuthenticationManager authenticationManager;
-	final UserRepository userRepository;
-	final RoleRepository roleRepository;
-	final PasswordEncoder passwordEncoder;
-	final JwtUtils jwtUtils;
-	final PasswordEncoder encoder;
+	@Autowired
+	AuthenticationManager authenticationManager;
+	@Autowired
+	UserRepository userRepository;
+	@Autowired
+	RoleRepository roleRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	@Autowired
+	JwtUtils jwtUtils;
+	@Autowired
+	PasswordEncoder encoder;
 
 	@Override
 	public JwtResponse login(AuthRequest authRequest) {
