@@ -4,7 +4,7 @@ import com.vaccinatiepunt.backendinventaris.entity.AuthRequest;
 import com.vaccinatiepunt.backendinventaris.entity.User;
 import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
 import com.vaccinatiepunt.backendinventaris.payload.response.JwtResponse;
-import com.vaccinatiepunt.backendinventaris.service.UserService;
+import com.vaccinatiepunt.backendinventaris.service.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;

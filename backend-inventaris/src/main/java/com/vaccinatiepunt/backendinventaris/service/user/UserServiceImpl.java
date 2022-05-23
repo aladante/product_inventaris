@@ -1,4 +1,4 @@
-package com.vaccinatiepunt.backendinventaris.service;
+package com.vaccinatiepunt.backendinventaris.service.user;
 
 import java.util.HashSet;
 import java.util.List;

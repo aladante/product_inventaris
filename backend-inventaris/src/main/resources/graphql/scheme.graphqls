@@ -25,6 +25,12 @@ type User {
     password: String!
 }
 
+type Product{
+    id: ID!
+    name: String!
+    expireDate: String
+}
+
 type JwtResponse {
     token: String!
     type: String!
