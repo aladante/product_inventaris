@@ -81,7 +81,9 @@ public class UserServiceImpl implements UserService {
 		User user = new User(signUpRequest.getUsername(),
 				encoder.encode(signUpRequest.getPassword()));
 
-		Set<String> strRoles = signUpRequest.getRole();
+		System.out.println(signUpRequest.getUsername());
+		System.out.println(signUpRequest.getRole());
+		List<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
@@ -90,12 +92,12 @@ public class UserServiceImpl implements UserService {
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
+				System.out.println(role);
 				switch (role) {
 					case "admin":
 						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(adminRole);
-
 						break;
 					case "mod":
 						Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)

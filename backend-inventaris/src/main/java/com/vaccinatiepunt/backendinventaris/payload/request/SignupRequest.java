@@ -1,6 +1,6 @@
 package com.vaccinatiepunt.backendinventaris.payload.request;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.validation.constraints.*;
 
@@ -13,7 +13,7 @@ public class SignupRequest {
 	@Size(min = 6, max = 40)
 	private String password;
 
-	private Set<String> role;
+	private List<String> role;
 
 	public String getUsername() {
 		return username;
@@ -31,11 +31,11 @@ public class SignupRequest {
 		this.password = password;
 	}
 
-	public Set<String> getRole() {
+	public List<String> getRole() {
 		return this.role;
 	}
 
-	public void setRole(Set<String> role) {
+	public void setRole(List<String> role) {
 		this.role = role;
 	}
 }

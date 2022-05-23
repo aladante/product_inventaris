@@ -3,10 +3,9 @@ package com.vaccinatiepunt.backendinventaris.service.product;
 import java.util.List;
 
 import com.vaccinatiepunt.backendinventaris.entity.Product;
-import com.vaccinatiepunt.backendinventaris.entity.User;
 import com.vaccinatiepunt.backendinventaris.exeptions.ProductAlreadyExistsException;
+import com.vaccinatiepunt.backendinventaris.exeptions.ProductNotFoundException;
 import com.vaccinatiepunt.backendinventaris.payload.request.ProductRequest;
-import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
 import com.vaccinatiepunt.backendinventaris.repo.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,15 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> listProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> products = productRepository.findAll();
+		return products;
 	}
 
 	@Override
 	public Product getProductByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Product product = productRepository.findByName(name)
+				.orElseThrow(() -> new ProductNotFoundException(name));
+		return product;
 	}
 
 	@Override
@@ -48,14 +48,15 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Boolean productExists(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return productRepository.existsByName(name);
 	}
 
 	@Override
 	public Boolean deleteProduct(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+		productRepository.delete(product);
+		return true;
+
 	}
 
 }
