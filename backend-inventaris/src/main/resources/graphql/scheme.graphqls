@@ -10,6 +10,7 @@ type Query {
     listRole: [Role]
     getRole(id: ID!): Role
 	hello: String
+	helllo: String
 }
 
 type Mutation {
@@ -42,12 +43,13 @@ enum RoleName {
 }
 
 input SignupRequest {
-    userName: String!
+    username: String!
     password: String!
+	role: [RoleName]
 }
 
 input AuthRequest {
-    userName: String!
+    username: String!
     password: String!
 }
 

@@ -1,7 +1,5 @@
 package com.vaccinatiepunt.backendinventaris.resolvers;
 
-import javax.validation.Valid;
-
 import com.vaccinatiepunt.backendinventaris.entity.AuthRequest;
 import com.vaccinatiepunt.backendinventaris.entity.User;
 import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
@@ -34,8 +32,9 @@ public class AuthResolver {
 		return response;
 	}
 
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public User createUser(@Valid SignupRequest signupRequest) {
+	@MutationMapping(name = "createUser", value = "createUser")
+	public User createUser(@Argument SignupRequest signupRequest) {
+		System.out.println("test");
 		return userService.createUser(signupRequest);
 	}
 
