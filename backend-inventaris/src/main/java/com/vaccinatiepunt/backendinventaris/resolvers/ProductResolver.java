@@ -25,7 +25,8 @@ public class ProductResolver {
 	ProductService productService;
 
 	@MutationMapping(name = "createProduct", value = "createProduct")
-	public Product addProduct(@Argument ProductRequest input) {
+	public Product createProduct(@Argument ProductRequest input) {
+		System.out.println("in here");
 		return productService.createProduct(input);
 	}
 

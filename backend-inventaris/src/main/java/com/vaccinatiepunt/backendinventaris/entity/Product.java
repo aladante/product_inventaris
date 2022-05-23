@@ -18,6 +18,10 @@ import lombok.Data;
 @Table(name = "product")
 public class Product {
 
+	public Product(String name) {
+		this.name = name;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")

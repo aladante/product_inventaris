@@ -9,14 +9,18 @@ type Query {
 
     listRole: [String]
     getRole(id: ID!): String! 
-	hello: String
-	helllo: String
+
+	getProduct : String!
+
+	# hello: String
+	# helllo: String
 }
 
 type Mutation {
     login(input: AuthRequest!) : JwtResponse!
     createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
+	createProduct(input: ProductRequest!) : Product!
 }
 
 type User {
@@ -30,6 +34,7 @@ type Product{
     name: String!
     expireDate: String
 }
+
 
 type JwtResponse {
     token: String!
@@ -47,4 +52,8 @@ input AuthRequest {
     password: String!
 }
 
+input ProductRequest{
+    name: String!
+    expireDate: String
+}
 
