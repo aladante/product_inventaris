@@ -8,25 +8,30 @@ import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
 import com.vaccinatiepunt.backendinventaris.payload.response.JwtResponse;
 import com.vaccinatiepunt.backendinventaris.service.UserService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@Component
+@Controller
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 @Validated
 public class AuthResolver {
 
+	@Autowired
 	UserService userService;
 
-	@PreAuthorize("isAnonymous()")
-	public JwtResponse login(@Valid AuthRequest input) {
-		return userService.login(input);
+	@MutationMapping(name = "login", value = "login")
+	public JwtResponse login(@Argument AuthRequest input) {
+		JwtResponse response = userService.login(input);
+		return response;
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")

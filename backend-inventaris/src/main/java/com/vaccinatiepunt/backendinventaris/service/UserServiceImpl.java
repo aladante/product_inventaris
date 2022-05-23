@@ -15,16 +15,13 @@ import com.vaccinatiepunt.backendinventaris.exeptions.UserNotFoundException;
 import com.vaccinatiepunt.backendinventaris.exeptions.UsernameAlreadyExistsException;
 import com.vaccinatiepunt.backendinventaris.payload.request.SignupRequest;
 import com.vaccinatiepunt.backendinventaris.payload.response.JwtResponse;
-import com.vaccinatiepunt.backendinventaris.payload.response.MessageResponse;
 import com.vaccinatiepunt.backendinventaris.repo.RoleRepository;
 import com.vaccinatiepunt.backendinventaris.repo.UserRepository;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -48,20 +45,14 @@ public class UserServiceImpl implements UserService {
 	public JwtResponse login(AuthRequest authRequest) {
 
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-		List<String> roles = userDetails.getAuthorities().stream()
-				.map(item -> item.getAuthority())
-				.collect(Collectors.toList());
-
 		return new JwtResponse(jwt,
-				userDetails.getId(),
-				userDetails.getUsername(),
-				roles);
+				userDetails.getUsername());
 	}
 
 	@Override
@@ -93,7 +84,6 @@ public class UserServiceImpl implements UserService {
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
-				System.out.println(role);
 				switch (role) {
 					case "admin":
 						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
