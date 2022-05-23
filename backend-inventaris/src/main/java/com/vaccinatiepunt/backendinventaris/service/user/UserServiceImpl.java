@@ -81,8 +81,6 @@ public class UserServiceImpl implements UserService {
 		User user = new User(signUpRequest.getUsername(),
 				encoder.encode(signUpRequest.getPassword()));
 
-		System.out.println(signUpRequest.getUsername());
-		System.out.println(signUpRequest.getRole());
 		List<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
@@ -92,7 +90,6 @@ public class UserServiceImpl implements UserService {
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
-				System.out.println(role);
 				switch (role) {
 					case "admin":
 						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
