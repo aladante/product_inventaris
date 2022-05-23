@@ -33,9 +33,8 @@ public class AuthResolver {
 	}
 
 	@MutationMapping(name = "createUser", value = "createUser")
-	public User createUser(@Argument SignupRequest signupRequest) {
-		System.out.println("test");
-		return userService.createUser(signupRequest);
+	public User createUser(@Argument SignupRequest input) {
+		return userService.createUser(input);
 	}
 
 	@PreAuthorize("hasAuthority('ADMIN')")

@@ -7,8 +7,8 @@ type Query {
     listUser: [User]
     getUser(id: ID!): User
 
-    listRole: [Role]
-    getRole(id: ID!): Role
+    listRole: [String]
+    getRole(id: ID!): String! 
 	hello: String
 	helllo: String
 }
@@ -21,9 +21,8 @@ type Mutation {
 
 type User {
     id: ID!
-    userName: String!
+    username: String!
     password: String!
-    role: Role!
 }
 
 type JwtResponse {
@@ -31,21 +30,10 @@ type JwtResponse {
     type: String!
 }
 
-type Role {
-    id: ID!
-    name: RoleName!
-}
-
-enum RoleName {
-    USER
-	MOD
-    ADMIN
-}
-
 input SignupRequest {
     username: String!
     password: String!
-	role: [RoleName]
+	role: [String]
 }
 
 input AuthRequest {
