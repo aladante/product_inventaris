@@ -20,6 +20,7 @@ type Mutation {
     login(input: AuthRequest!) : JwtResponse!
     createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
+
 	createProduct(input: ProductRequest!) : Product!
 }
 
