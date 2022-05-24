@@ -7,6 +7,7 @@ import com.vaccinatiepunt.backendinventaris.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -24,13 +25,13 @@ public class LocationResolver {
 	@Autowired
 	ProductService productService;
 
-	@MutationMapping(name = "createProduct", value = "createProduct")
+	@MutationMapping(name = "createLocation", value = "createLocation")
 	public Product createLocation(@Argument ProductRequest input) {
 		return productService.createProduct(input);
 	}
 
 	@PreAuthorize("hasAuthority('USER')")
-	@MutationMapping(name = "getProduct", value = "getProduct")
+	@QueryMapping(name = "getLocation", value = "getLocation")
 	public Product getLocation(@Argument String name) {
 		return productService.getProductByName(name);
 	}

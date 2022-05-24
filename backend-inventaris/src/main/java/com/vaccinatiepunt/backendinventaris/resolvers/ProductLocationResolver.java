@@ -24,13 +24,9 @@ public class ProductLocationResolver {
 	@Autowired
 	ProductService productService;
 
-	@MutationMapping(name = "createProduct", value = "createProduct")
-	public Product createProduct(@Argument ProductRequest input) {
-		return productService.createProduct(input);
-	}
 
 	@PreAuthorize("hasAuthority('USER')")
-	@MutationMapping(name = "getProduct", value = "getProduct")
+	@MutationMapping(name = "getProductOnLocation", value = "getProductOnLocation")
 	public Product getProdcut(@Argument String name) {
 		return productService.getProductByName(name);
 	}
