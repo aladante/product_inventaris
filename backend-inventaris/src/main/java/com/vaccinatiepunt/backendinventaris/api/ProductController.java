@@ -27,12 +27,10 @@ public class ProductController {
 
 	@GetMapping("/product/{name}")
 	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String getProduct(@PathVariable String name) {
+	public Product getProduct(@PathVariable String name) {
 		Product product = productRepository.findByName(name)
 				.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-
-		return "pl";
-
+		return product;
 	}
 
 	@PostMapping("/mod")

@@ -3,8 +3,8 @@ package com.vaccinatiepunt.backendinventaris.service.product;
 import java.util.List;
 
 import com.vaccinatiepunt.backendinventaris.entity.Product;
-import com.vaccinatiepunt.backendinventaris.exeptions.ProductAlreadyExistsException;
-import com.vaccinatiepunt.backendinventaris.exeptions.ProductNotFoundException;
+import com.vaccinatiepunt.backendinventaris.exeptions.LocationAlreadyExistsException;
+import com.vaccinatiepunt.backendinventaris.exeptions.LocationNotFoundException;
 import com.vaccinatiepunt.backendinventaris.payload.request.ProductRequest;
 import com.vaccinatiepunt.backendinventaris.repo.ProductRepository;
 
@@ -32,14 +32,14 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProductByName(String name) {
 		Product product = productRepository.findByName(name)
-				.orElseThrow(() -> new ProductNotFoundException(name));
+				.orElseThrow(() -> new LocationNotFoundException(name));
 		return product;
 	}
 
 	@Override
 	public Product createProduct(ProductRequest productRequest) {
 		if (productRepository.existsByName(productRequest.getName())) {
-			throw new ProductAlreadyExistsException(productRequest.getName());
+			throw new LocationAlreadyExistsException(productRequest.getName());
 		}
 		Product product = new Product(productRequest.getName());
 		productRepository.save(product);
@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Boolean deleteProduct(long id) {
-		Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+		Product product = productRepository.findById(id).orElseThrow(() -> new LocationNotFoundException(id));
 		productRepository.delete(product);
 		return true;
 

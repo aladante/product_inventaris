@@ -10,7 +10,13 @@ type Query {
     listRole: [String]
     getRole(id: ID!): String! 
 
-	getProduct : String!
+	# Product 
+	getProduct : Product!
+	getProducts: [Product]!
+
+	# location
+	getLocation: Location!
+	getLocations: [Location]!
 
 	# hello: String
 	# helllo: String
@@ -22,6 +28,7 @@ type Mutation {
     deleteUser(id: ID!) : Boolean!
 
 	createProduct(input: ProductRequest!) : Product!
+	createLocation(input: LocationRequest!) : Location!
 }
 
 type User {
@@ -36,6 +43,12 @@ type Product{
     expireDate: String
 }
 
+type Location{
+    name: String!
+    street: String!
+    number: Int!
+    city: String!
+}
 
 type JwtResponse {
     token: String!
@@ -58,3 +71,9 @@ input ProductRequest{
     expireDate: String
 }
 
+input LocationRequest{
+    name: String!
+    street: String!
+    number: Int!
+    city: String!
+}
