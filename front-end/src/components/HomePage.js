@@ -1,16 +1,16 @@
 import { Box, Flex, Text } from '@chakra-ui/layout';
-
+import BaseComponent from './Base.js'
 
 const HomeComponent = () => {
 	console.log("hello world")
 
 
 	return (
-		<Flex width="100vh">
+		<BaseComponent>
 			<Text>
 				hello world
 			</Text>
-		</Flex>
+		</BaseComponent>
 	)
 }
 export default HomeComponent;

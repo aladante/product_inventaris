@@ -2,7 +2,6 @@ import HomePage from '../components/HomePage'
 
 const Homepage = () => {
 	return <>
-
 		<HomePage />
 	</>
 }
