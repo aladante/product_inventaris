@@ -1,6 +1,7 @@
 package com.vaccinatiepunt.backendinventaris.config.jwt;
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import com.vaccinatiepunt.backendinventaris.config.services.UserDetailsImpl;
 
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
@@ -27,8 +29,13 @@ public class JwtUtils {
 
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
+		final String authorities = userPrincipal.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority)
+				.collect(Collectors.joining(","));
+
 		return Jwts.builder()
 				.setSubject((userPrincipal.getUsername()))
+				.claim("ROLES", authorities)
 				.setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret)

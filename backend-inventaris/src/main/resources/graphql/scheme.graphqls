@@ -21,6 +21,7 @@ type Mutation {
     createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
 	createProduct(input: ProductRequest!) : Product!
+	createLocation(input: LocationRequest!) : Location!
 }
 
 type User {
@@ -33,6 +34,14 @@ type Product{
     id: ID!
     name: String!
     expireDate: String
+}
+
+type Location{
+    id: ID!
+    name: String!
+    street: String!
+    city: String!
+    number: Int!
 }
 
 
@@ -55,5 +64,12 @@ input AuthRequest {
 input ProductRequest{
     name: String!
     expireDate: String
+}
+
+input LocationRequest{
+    name: String!
+    street: String!
+    city: String!
+    number: Int!
 }
 
