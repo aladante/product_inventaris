@@ -16,34 +16,32 @@ import { gql, useMutation } from "@apollo/client";
 import { AUTH_TOKEN } from "../constants/constants";
 
 const LOGIN_MUTATION = gql`
-  mutation LoginMutation(
-    $email: String!
+  mutation login(
+    $username: String!
     $password: String!
   ) {
-    login(email: $email, password: $password) {
+    login(input : {username: $username, password: $password}) {
       token
     }
-  }
-`;
+  }`;
 
 const Login = () => {
 	const navigate = useNavigate();
+	const [login] = useMutation(LOGIN_MUTATION)
 
 	const onSubmit = (values) => {
-
 		console.log(values)
 
-		// useMutation(LOGIN_MUTATION, {
-		// 	variables: {
-		// 		email: values.email,
-		// 		password: values.password
-		// 	},
-		// 	onCompleted: ({ login }) => {
-		// 		console.log("test")
-		// 		localStorage.setItem(AUTH_TOKEN, login.token);
-		// 		navigate('/');
-		// 	}
-		// })
+		login({
+			variables: {
+				...values,
+			}
+		}).then((data) => {
+			console.log(data)
+			console.log(data.data.login.token)
+		}).catch((e) => {
+			console.log(e)
+		})
 	};
 
 	return (
@@ -51,12 +49,12 @@ const Login = () => {
 			<Box bg="white" p={6} rounded="md" w={64}>
 				<Formik
 					initialValues={{
-						name: "",
+						username: "",
 						password: "",
 						rememberMe: false
 					}}
 					onSubmit={(values) => {
-						alert(JSON.stringify(values, null, 2));
+						onSubmit(values)
 					}}
 				>
 					{({ handleSubmit, errors, touched }) => (
@@ -66,9 +64,9 @@ const Login = () => {
 									<FormLabel htmlFor="email">Email Address</FormLabel>
 									<Field
 										as={Input}
-										id="name"
-										name="name"
-										type="name"
+										id="username"
+										name="username"
+										type="username"
 										variant="filled"
 									/>
 								</FormControl>
