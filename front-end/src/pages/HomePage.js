@@ -6,7 +6,7 @@ import {
 	Box,
 } from "@chakra-ui/react";
 
-import { ADDPRODUCT, ADDLOCATION } from '../constants/routeConstants'
+import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION } from '../constants/routeConstants'
 
 // 2. Then use it like this
 const Homepage = ({ role }) => {
@@ -15,11 +15,11 @@ const Homepage = ({ role }) => {
 		<Box width="100vw" alignItems="center">
 			<Flex direction="column" width="60%" >
 				<Button type="submit" onClick={() => navigate(
-					"/product")} colorScheme="purple" width="full">
+					PRODUCT)} colorScheme="purple" width="full">
 					product
 				</Button>
 				<Button type="submit" onClick={() => navigate(
-					"/product")} colorScheme="purple" width="full">
+					LOCATION)} colorScheme="purple" width="full">
 					Location
 				</Button>
 

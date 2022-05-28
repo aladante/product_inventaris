@@ -1,0 +1,30 @@
+
+package com.vaccinatiepunt.backendinventaris.payload.response;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.vaccinatiepunt.backendinventaris.entity.Location;
+import com.vaccinatiepunt.backendinventaris.entity.Product;
+
+public class LocationResponse {
+	private List<Location> locations;
+
+	public LocationResponse(Location location) {
+		List<Location> products = new ArrayList<Location>();
+		this.locations = products;
+	}
+
+	public LocationResponse(List<Product> products) {
+		this.locations = locations;
+	}
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.locations = products;
+    }
+
+}

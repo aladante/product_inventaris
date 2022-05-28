@@ -10,10 +10,11 @@ type Query {
     listRole: [String]
     getRole(id: ID!): String! 
 
-	getProduct : String!
+	getProduct : Product!
+    listProducts : [Product]
 
-	# hello: String
-	# helllo: String
+	getLocation : Location!
+    listLocations : [Location] 
 }
 
 type Mutation {
