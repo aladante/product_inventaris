@@ -1,12 +1,10 @@
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
 
 
-const baseComponent = () => {
-
+const baseComponent = (props) => {
 	return (
 		<Flex width="100vh" >
-
-
+			{props}
 		</Flex>
 	)
 }

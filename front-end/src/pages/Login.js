@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Field } from "formik";
 import {
@@ -37,8 +37,8 @@ const Login = () => {
 				...values,
 			}
 		}).then((data) => {
-			console.log(data)
-			console.log(data.data.login.token)
+			localStorage.setItem(AUTH_TOKEN, data.data.login.token)
+			navigate("/")
 		}).catch((e) => {
 			console.log(e)
 		})
