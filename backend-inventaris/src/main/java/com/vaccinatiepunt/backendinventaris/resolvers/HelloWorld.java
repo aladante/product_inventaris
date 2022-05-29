@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class HelloWorld {
 
+
 	@SchemaMapping(typeName = "Query", value = "hello")
 	@PreAuthorize("hasAuthority('USER')")
 	public String hello() {

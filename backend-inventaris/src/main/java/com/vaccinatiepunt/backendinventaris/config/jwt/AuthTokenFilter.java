@@ -2,6 +2,7 @@
 package com.vaccinatiepunt.backendinventaris.config.jwt;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,6 +36,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 		try {
 			String jwt = parseJwt(request);
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+				logger.info("in here");
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
 				UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -43,6 +45,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 						null,
 						userDetails.getAuthorities());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+				logger.info(username);
+				logger.info(userDetails.getAuthorities().toString());
+
 
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}

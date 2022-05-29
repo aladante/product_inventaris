@@ -39,7 +39,7 @@ const Locations = ({ locations, locationInput, navigate }) => {
 }
 
 
-const Location = () => {
+const LocationId = () => {
 	const navigate = useNavigate();
 	const { data, loading, error } = useQuery(LIST_LOCATIONS);
 	const [locationInput, setLocationInput] = useState("")
@@ -66,4 +66,4 @@ const Location = () => {
 
 }
 
-export default Location;
+export default LocationId;

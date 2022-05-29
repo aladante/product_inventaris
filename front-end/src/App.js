@@ -8,11 +8,12 @@ import Product from './pages/Product'
 import AddProduct from './pages/AddProduct'
 import AddLocation from './pages/AddLocation'
 import Location from './pages/Location'
+import LocationId from './pages/LocationId'
 import HomePage from './pages/HomePage'
 
 import { getRole } from './utils/JwtDecoder'
 
-import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION } from './constants/routeConstants'
+import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION, LOCATIONWITHSLUG } from './constants/routeConstants'
 import { AUTH_TOKEN } from './constants/constants'
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
 				<Route path={BASE} element={<HomePage role={role} />} />
 				<Route path={PRODUCT} element={<Product />} />
 				<Route path={LOCATION} element={<Location />} />
+				<Route path={LOCATIONWITHSLUG} element={<LocationId />} />
 				<Route path={ADDPRODUCT} element={<AddProduct />} />
 				<Route path={ADDLOCATION} element={<AddLocation />} />
 				<Route path={"*"} element={<HomePage />} />

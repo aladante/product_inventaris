@@ -4,6 +4,7 @@ export const LOGIN = "/login";
 export const REGISTRATION = "/signup";
 export const PRODUCT = "/product";
 export const ADDPRODUCT = "/product/add";
-export const LOCATION= "/location";
-export const ADDLOCATION= "/location/add";
+export const LOCATION = "/location";
+export const LOCATIONWITHSLUG = "/location/:id";
+export const ADDLOCATION = "/location/add";
 

@@ -1,14 +1,15 @@
 package com.vaccinatiepunt.backendinventaris.resolvers;
 
+import java.util.List;
+
 import com.vaccinatiepunt.backendinventaris.entity.Location;
 import com.vaccinatiepunt.backendinventaris.payload.request.LocationRequest;
-import com.vaccinatiepunt.backendinventaris.payload.response.LocationResponse;
 import com.vaccinatiepunt.backendinventaris.service.location.LocationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -31,17 +32,16 @@ public class LocationResolver {
 		return locationService.createLocation(input);
 	}
 
-	@PreAuthorize("hasAuthority('USER')")
+	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@MutationMapping(name = "getLocation", value = "getLocation")
 	public Location getLocation(@Argument String name) {
 		return locationService.getLocationByName(name);
 	}
 
-	@PreAuthorize("hasAuthority('ADMIN')")
-	@QueryMapping(name = "listLocations", value = "listLocations")
-	public LocationResponse getLocations(@Argument String name) {
-		System.out.println("in here");
-		LocationResponse response = new LocationResponse(locationService.listLocations());
-		return response;
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	@SchemaMapping(typeName = "Query", value = "listLocations")
+	public List<Location> getLocations(@Argument String name) {
+		List<Location> locations = locationService.listLocations();
+		return locations;
 	}
 }

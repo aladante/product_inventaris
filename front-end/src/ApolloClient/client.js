@@ -6,7 +6,7 @@ import { AUTH_TOKEN } from '../constants/constants.js'
 const httpLink = new HttpLink({
 	uri: 'http://localhost:8080/graphql',
 	headers: {
-		authorization: "Bearer " + localStorage.getItem(AUTH_TOKEN) || null,
+		Authorization: "Bearer " + localStorage.getItem(AUTH_TOKEN) || null,
 	},
 });
 

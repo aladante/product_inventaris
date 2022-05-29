@@ -29,6 +29,18 @@ public class Location {
 	int number;
 	String city;
 
+	public Location() {
+	}
+
+	public Location(Long id, String name, String street, int number,
+			String city) {
+		this.id = id;
+		this.name = name;
+		this.street = street;
+		this.number = number;
+		this.city = city;
+	}
+
 	public Location(String name, String area, String street, int number) {
 		this.name = name;
 		this.street = street;
