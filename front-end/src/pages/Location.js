@@ -6,6 +6,7 @@ import {
 	Input,
 	Stack,
 	Button,
+	Heading, VStack
 } from "@chakra-ui/react";
 import { useQuery, gql } from '@apollo/client';
 import { LOCATION } from '../constants/routeConstants'
@@ -54,16 +55,18 @@ const Location = () => {
 		setLocationInput(e.target.value)
 	}
 	return (
-		<Flex direction="column" align="center">
-			<Box width="100vw" height="3em">
-				<Input onChange={handleChange}
-				>
-				</Input>
-			</Box>
-			<Locations locations={locations} locationInput={locationInput} navigate={navigate} />
+		<Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
+			<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" height="80%">
+				<Heading> Choose location</Heading>
+				<Box width="80%" height="3em">
+					<Input placeholder="search for location" onChange={handleChange}
+					>
+					</Input>
+				</Box>
+				<Locations locations={locations} locationInput={locationInput} navigate={navigate} />
+			</VStack>
 		</Flex>
 	)
-
 }
 
 export default Location;

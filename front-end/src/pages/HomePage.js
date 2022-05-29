@@ -26,7 +26,6 @@ const Homepage = () => {
 	}
 
 	if (error) {
-		console.log(error)
 		navigate(LOGIN)
 	}
 
