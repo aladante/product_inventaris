@@ -1,5 +1,7 @@
 package com.vaccinatiepunt.backendinventaris.resolvers;
 
+import java.util.List;
+
 import com.vaccinatiepunt.backendinventaris.entity.Product;
 import com.vaccinatiepunt.backendinventaris.payload.request.ProductRequest;
 import com.vaccinatiepunt.backendinventaris.service.product.ProductService;
@@ -7,6 +9,7 @@ import com.vaccinatiepunt.backendinventaris.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -35,4 +38,10 @@ public class ProductResolver {
 		return productService.getProductByName(name);
 	}
 
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	@SchemaMapping(typeName = "Query", value = "listProducts")
+	public List<Product> getProducts() {
+		List<Product> products = productService.listProducts();
+		return products;
+	}
 }

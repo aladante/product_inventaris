@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import { Formik, Field } from "formik";
 import {
-	Flex,
 	Box,
-	Input,
-	Stack,
 	Button,
+	Checkbox,
+	Flex,
+	Stack,
+	FormControl,
+	FormLabel,
+	FormErrorMessage,
+	Input,
+	VStack,
+	Select,
+	Text
 } from "@chakra-ui/react";
-import { useQuery, gql } from '@apollo/client';
+import { useMutation, useQuery, gql } from '@apollo/client';
 import { LOCATION } from '../constants/routeConstants'
+import { getLocation } from 'graphql';
 
 
 const LIST_LOCATIONS = gql`
-  query listLocations {
-	  listLocations {
+  query getLocation($locationId : ID!){
+	  getLocation(id : $locationId){
 			id,
 			name,
 			city,
@@ -22,48 +31,145 @@ const LIST_LOCATIONS = gql`
 	  }
   }`;
 
-const Locations = ({ locations, locationInput, navigate }) => {
-	return (
-		< Stack name='ching' spacing={4}>
-			{
-				locations.filter(loca => loca.name.includes(locationInput) || locationInput === "").map((loca) => (
-					<Box key={loca.id}  >
-						<Button colorScheme="purple" onClick={() => navigate(LOCATION + "/" + loca.id)}>
-							{loca.name} : {loca.city}
-						</Button>
-					</Box>
-				))
-			}
-		</Stack >
-	);
+const LIST_PRODUCTS = gql`
+  query listProducts{
+	  listProducts {
+			id,
+			name,
+	  }
+  }`;
+
+const ADD_PRODUCT_AT_LOCATION = gql`
+  mutation addProductAtLocation (
+    $productId: ID!
+    $locationId: ID!
+    $expireDate: String!
+    $amount: Int!
+  ) {
+    addProductAtLocation (input : {productId: $productId, locationId: $locationId, expireDate: $expireDate, amount:  $amount}) {
+	  id
+
+    }
+  }`;
+
+
+const ProductsAtLocation = () => {
+	return <></>
 }
 
-
-const LocationId = () => {
-	const navigate = useNavigate();
-	const { data, loading, error } = useQuery(LIST_LOCATIONS);
-	const [locationInput, setLocationInput] = useState("")
-
+const AddProductsAtLocation = (name) => {
+	const { data, loading, error } = useQuery(LIST_PRODUCTS);
+	const [addProductToLocation] = useMutation(ADD_PRODUCT_AT_LOCATION)
 
 	if (loading) return 'Loading...'
 	if (error) return `Error! ${error.message}`
 
-	let locations = data.listLocations;
+	const onSubmit = (values) => {
+		console.log(values)
+		addProductToLocation({
+			variables: {
+				...values,
+			}
+		}).then((data) => {
+		}).catch((e) => {
+			console.log(e)
+		})
+	};
+	return (
+		<Box bg="white" p={6} rounded="md" w={64}>
+			<Formik
+				initialValues={{
+					locationId: name.id,
+					productId: 1,
+					expireDate: "",
+					amount: 1
+				}}
+				onSubmit={(values) => {
+					onSubmit(values)
+				}}
+			>
+				{({ handleSubmit, errors, touched }) => (
+					<form onSubmit={handleSubmit}>
+						<VStack spacing={4} align="flex-start">
+							<FormControl>
+								<FormLabel htmlFor="location">Location</FormLabel>
+								<Field
+									as={Input}
+									id="locationId"
+									name="locationId"
+									type="String"
+									variant="filled"
+									isDisabled={true}
+								/>
+							</FormControl>
+							<FormControl isInvalid={!!errors.password && touched.password}>
+								<FormLabel htmlFor="products">Products</FormLabel>
+								<Field
+									as={Select}
+									name="productId"
+									id="productId"
+									variant="filled"
+								>
+									{data.listProducts.map(product => (
+										<option key={product.id} id="productId" value={product.id}>
+											{product.name}
+										</option>
+									))}
+								</Field>
+							</FormControl>
+							<FormControl isInvalid={!!errors.password && touched.password}>
+								<FormLabel htmlFor="expireDate">expire date</FormLabel>
+								<Field
+									as={Input}
+									id="expireDate"
+									name="expireDate"
+									type="date"
+									variant="filled"
+								/>
+							</FormControl>
+							<FormControl isInvalid={!!errors.password && touched.password}>
+								<FormLabel htmlFor="amount">Amount</FormLabel>
+								<Field
+									as={Input}
+									id="amount"
+									name="amount"
+									type="number"
+									variant="filled"
+								/>
+								<FormErrorMessage>{errors.password}</FormErrorMessage>
+							</FormControl>
+							<Button type="submit" colorScheme="purple" width="full">
+								ADD
+							</Button>
+						</VStack>
+					</form>
+				)}
+			</Formik>
+		</Box>
+	)
+}
 
-	const handleChange = (e) => {
-		setLocationInput(e.target.value)
-	}
+const LocationId = () => {
+	const params = useParams();
+	let locationId = params.id;
+	const { data, loading, error } = useQuery(LIST_LOCATIONS, { variables: { locationId } });
+
+	if (loading) return 'Loading...'
+	if (error) return `Error! ${error.message}`
+
+	const { getLocation: { name, city, street, id } } = data
+
 	return (
 		<Flex direction="column" align="center">
 			<Box width="100vw" height="3em">
-				<Input onChange={handleChange}
-				>
-				</Input>
+				<Text>
+					{name}
+				</Text>
 			</Box>
-			<Locations locations={locations} locationInput={locationInput} navigate={navigate} />
+			<ProductsAtLocation />
+			<AddProductsAtLocation location={name} id={id} />
 		</Flex>
 	)
-
 }
 
 export default LocationId;

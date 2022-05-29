@@ -11,6 +11,8 @@ public interface LocationService {
 
 	Location getLocationByName(String name);
 
+	Location getLocationById(long id);
+
 	Location createLocation(LocationRequest locationRequest);
 
 	Boolean locationExists(String name);

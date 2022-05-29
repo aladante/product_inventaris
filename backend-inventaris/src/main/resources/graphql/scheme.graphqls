@@ -13,16 +13,23 @@ type Query {
 	getProduct : Product!
     listProducts : [Product]
 
-	getLocation : Location!
+	getLocation(id: ID!) : Location!
     listLocations : [Location] 
+
+
+    listProductsonLocation (productId: ID!): [ProductLocation] 
+    listProductsonLocations : [Location] 
 }
 
 type Mutation {
     login(input: AuthRequest!) : JwtResponse!
     createUser(input: SignupRequest!) : User!
     deleteUser(id: ID!) : Boolean!
+
 	createProduct(input: ProductRequest!) : Product!
 	createLocation(input: LocationRequest!) : Location!
+
+	addProductAtLocation(input: ProductLocationRequest!) : ProductLocation!
 }
 
 type User {
@@ -43,6 +50,14 @@ type Location{
     street: String!
     city: String!
     number: Int!
+}
+
+type ProductLocation {
+	id : ID!
+	product :Product!
+	location : Location!
+	amount: Int!
+	expireDate: String!
 }
 
 
@@ -74,3 +89,9 @@ input LocationRequest{
     number: Int!
 }
 
+input ProductLocationRequest{
+    productId:  ID!
+    locationId:  ID!
+	amount : Int!
+    expireDate: String!
+}

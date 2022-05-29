@@ -22,6 +22,9 @@ public class Product {
 		this.name = name;
 	}
 
+	public Product() {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")

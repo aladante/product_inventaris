@@ -32,10 +32,10 @@ public class LocationResolver {
 		return locationService.createLocation(input);
 	}
 
-	@PreAuthorize("hasAuthority('ROLE_USER')")
-	@MutationMapping(name = "getLocation", value = "getLocation")
-	public Location getLocation(@Argument String name) {
-		return locationService.getLocationByName(name);
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	@SchemaMapping(typeName = "Query", value = "getLocation")
+	public Location getLocationById(@Argument long id) {
+		return locationService.getLocationById(id);
 	}
 
 	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")

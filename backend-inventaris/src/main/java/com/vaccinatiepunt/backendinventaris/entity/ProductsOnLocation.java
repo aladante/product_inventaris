@@ -1,6 +1,6 @@
 package com.vaccinatiepunt.backendinventaris.entity;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "product_at_location")
-class ProductsOnLocation {
+public class ProductsOnLocation {
+
+	public ProductsOnLocation(Location location, Product product, Date expire_date, int amount) {
+		this.location = location;
+		this.product = product;
+		this.expire_date = expire_date;
+		this.amount = amount;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +38,7 @@ class ProductsOnLocation {
 	@JoinColumn(name = "product_id")
 	Product product;
 
-	LocalDateTime created_at;
+	Date expire_date;
 
 	int amount;
 

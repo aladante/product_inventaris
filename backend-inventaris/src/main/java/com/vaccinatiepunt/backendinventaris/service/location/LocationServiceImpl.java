@@ -59,4 +59,11 @@ public class LocationServiceImpl implements LocationService {
 		return true;
 	}
 
+	@Override
+	public Location getLocationById(long id) {
+		Location location = locationRepository.findById(id)
+				.orElseThrow(() -> new LocationNotFoundException(id));
+		return location;
+	}
+
 }
