@@ -26,6 +26,7 @@ public class ProductLocationResolver {
 
 	@MutationMapping(name = "addProductAtLocation", value = "addProductAtLocation")
 	public ProductsOnLocation createProductLocation(@Argument ProductLocationRequest input) {
+		System.out.println(input.getExpireDate());
 		return productLocationService.createProductLocation(input);
 	}
 

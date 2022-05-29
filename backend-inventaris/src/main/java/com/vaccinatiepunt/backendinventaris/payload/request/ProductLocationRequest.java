@@ -4,9 +4,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.sql.Date;
-import java.time.LocalDate;
-
 import javax.validation.constraints.NotBlank;
 
 @Data
@@ -20,7 +17,7 @@ public class ProductLocationRequest {
 	long locationId;
 
 	int amount;
-	String exipreDate;
+	String expireDate;
 
 	public long getProductId() {
 		return productId;
@@ -46,11 +43,12 @@ public class ProductLocationRequest {
 		this.amount = amount;
 	}
 
-	public String getExipreDate() {
-		return exipreDate;
+	public String getExpireDate() {
+		return expireDate;
 	}
 
-	public void setExipreDate(String exipreDate) {
-		this.exipreDate = exipreDate;
+	public void setExpireDate(String expireDate) {
+		this.expireDate = expireDate;
 	}
+
 }

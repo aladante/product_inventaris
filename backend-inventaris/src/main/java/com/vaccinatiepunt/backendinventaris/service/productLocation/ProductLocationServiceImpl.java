@@ -1,5 +1,6 @@
 package com.vaccinatiepunt.backendinventaris.service.productLocation;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.vaccinatiepunt.backendinventaris.entity.Location;
@@ -60,8 +61,10 @@ public class ProductLocationServiceImpl implements ProductLocationService {
 		Product product = productRepository.findById(productsOnLocationRequest.getProductId())
 				.orElseThrow(() -> new ProductNotFoundException(productsOnLocationRequest.getProductId()));
 
+
+		Date date = Date.valueOf(productsOnLocationRequest.getExpireDate());
 		ProductsOnLocation productOnLocation = new ProductsOnLocation(location, product,
-				productsOnLocationRequest.getExipreDate(), productsOnLocationRequest.getAmount());
+				date, productsOnLocationRequest.getAmount());
 
 		productLocationRepository.save(productOnLocation);
 		return productOnLocation;
