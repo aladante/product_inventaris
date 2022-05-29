@@ -1,5 +1,6 @@
 package com.vaccinatiepunt.backendinventaris.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ public class Location {
 	private Long id;
 
 	@OneToMany(mappedBy = "location")
-	Set<ProductsOnLocation> productsOnLocation;
+	List<ProductsOnLocation> productsOnLocation;
 
 	String name;
 	String street;
@@ -56,11 +57,11 @@ public class Location {
 		this.id = id;
 	}
 
-	public Set<ProductsOnLocation> getProductsOnLocation() {
+	public List<ProductsOnLocation> getProductsOnLocation() {
 		return productsOnLocation;
 	}
 
-	public void setProductsOnLocation(Set<ProductsOnLocation> productsOnLocation) {
+	public void setProductsOnLocation(List<ProductsOnLocation> productsOnLocation) {
 		this.productsOnLocation = productsOnLocation;
 	}
 

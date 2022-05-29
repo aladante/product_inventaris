@@ -3,6 +3,7 @@ package com.vaccinatiepunt.backendinventaris.repo;
 import java.util.List;
 import java.util.Optional;
 
+import com.vaccinatiepunt.backendinventaris.entity.Location;
 import com.vaccinatiepunt.backendinventaris.entity.ProductsOnLocation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +14,7 @@ public interface ProductLocationRepository extends JpaRepository<ProductsOnLocat
 
 	List<ProductsOnLocation> findAll();
 
-	List<ProductsOnLocation> findAllByLocationId(long locationId);
+	List<ProductsOnLocation> findAllByLocation(Location location);
 
 	List<ProductsOnLocation> findAllByProductId(long productId);
 

@@ -1,9 +1,11 @@
 package com.vaccinatiepunt.backendinventaris.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +18,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "product_at_location")
-public class ProductsOnLocation {
+public class ProductsOnLocation implements Serializable{
+
+	public ProductsOnLocation() {
+	}
 
 	public ProductsOnLocation(Location location, Product product, Date expire_date, int amount) {
 		this.location = location;
@@ -30,11 +35,11 @@ public class ProductsOnLocation {
 	@Column(name = "product_at_location_id")
 	Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "location_id")
 	Location location;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "product_id")
 	Product product;
 

@@ -41,8 +41,12 @@ public class ProductLocationServiceImpl implements ProductLocationService {
 	}
 
 	@Override
-	public List<ProductsOnLocation> listProductsOnLocationByLocationId(long id) {
-		List<ProductsOnLocation> productsOnLocations = productLocationRepository.findAllByLocationId(id);
+	public List<ProductsOnLocation> listProductsOnLocationByLocation(long id) {
+		Location location = locationRepository.findById(id)
+				.orElseThrow(() -> new LocationNotFoundException(id));
+		List<ProductsOnLocation> productsOnLocations = productLocationRepository.findAllByLocation(location);
+		System.out.println(productsOnLocations);
+		System.out.println("LEANNNNNN");
 		return productsOnLocations;
 	}
 
@@ -60,7 +64,6 @@ public class ProductLocationServiceImpl implements ProductLocationService {
 
 		Product product = productRepository.findById(productsOnLocationRequest.getProductId())
 				.orElseThrow(() -> new ProductNotFoundException(productsOnLocationRequest.getProductId()));
-
 
 		Date date = Date.valueOf(productsOnLocationRequest.getExpireDate());
 		ProductsOnLocation productOnLocation = new ProductsOnLocation(location, product,
