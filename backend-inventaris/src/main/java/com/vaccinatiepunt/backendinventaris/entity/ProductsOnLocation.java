@@ -23,10 +23,10 @@ public class ProductsOnLocation implements Serializable{
 	public ProductsOnLocation() {
 	}
 
-	public ProductsOnLocation(Location location, Product product, Date expire_date, int amount) {
+	public ProductsOnLocation(Location location, Product product, Date expireDate, int amount) {
 		this.location = location;
 		this.product = product;
-		this.expire_date = expire_date;
+		this.expireDate = expireDate;
 		this.amount = amount;
 	}
 
@@ -43,7 +43,7 @@ public class ProductsOnLocation implements Serializable{
 	@JoinColumn(name = "product_id")
 	Product product;
 
-	Date expire_date;
+	Date expireDate;
 
 	int amount;
 

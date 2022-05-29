@@ -1,5 +1,6 @@
 package com.vaccinatiepunt.backendinventaris.repo;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,4 +22,6 @@ public interface ProductLocationRepository extends JpaRepository<ProductsOnLocat
 	Optional<ProductsOnLocation> findById(long id);
 
 	Boolean existsById(long id);
+
+	Boolean existsByLocationIdAndProductIdAndExpireDate(long locationId, long productId, Date expireDate);
 }

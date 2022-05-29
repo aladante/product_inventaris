@@ -114,7 +114,13 @@ const AddProductsAtLocation = (name) => {
 				colorScheme: "purple"
 			})
 		}).catch((e) => {
-			console.log(e)
+			toast({
+				title: 'Product at location Already exists.',
+				status: 'error',
+				duration: 4000,
+				isClosable: true,
+				colorScheme: "purple"
+			})
 		})
 	};
 

@@ -7,6 +7,7 @@ import com.vaccinatiepunt.backendinventaris.entity.Location;
 import com.vaccinatiepunt.backendinventaris.entity.Product;
 import com.vaccinatiepunt.backendinventaris.entity.ProductsOnLocation;
 import com.vaccinatiepunt.backendinventaris.exeptions.LocationNotFoundException;
+import com.vaccinatiepunt.backendinventaris.exeptions.ProductAtLocationAlreadyExistsException;
 import com.vaccinatiepunt.backendinventaris.exeptions.ProductNotFoundException;
 import com.vaccinatiepunt.backendinventaris.payload.request.ProductLocationRequest;
 import com.vaccinatiepunt.backendinventaris.repo.LocationRepository;
@@ -68,6 +69,13 @@ public class ProductLocationServiceImpl implements ProductLocationService {
 		Date date = Date.valueOf(productsOnLocationRequest.getExpireDate());
 		ProductsOnLocation productOnLocation = new ProductsOnLocation(location, product,
 				date, productsOnLocationRequest.getAmount());
+
+		boolean exists = productLocationRepository.existsByLocationIdAndProductIdAndExpireDate(location.getId(),
+				product.getId(), date);
+		if (exists) {
+			System.out.println("EXISTS");
+			throw new ProductAtLocationAlreadyExistsException(product.getName());
+		}
 
 		productLocationRepository.save(productOnLocation);
 		return productOnLocation;
