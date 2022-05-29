@@ -17,13 +17,11 @@ import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION, LOCATIONWITHSL
 import { AUTH_TOKEN } from './constants/constants'
 
 const App = () => {
-	let token = localStorage.getItem(AUTH_TOKEN)
-	const [role, setRole] = useState(getRole(token));
 	return (
 		<>
 			<Routes>
 				<Route path={LOGIN} element={<Login />} />
-				<Route path={BASE} element={<HomePage role={role} />} />
+				<Route path={BASE} element={<HomePage />} />
 				<Route path={PRODUCT} element={<Product />} />
 				<Route path={LOCATION} element={<Location />} />
 				<Route path={LOCATIONWITHSLUG} element={<LocationId />} />

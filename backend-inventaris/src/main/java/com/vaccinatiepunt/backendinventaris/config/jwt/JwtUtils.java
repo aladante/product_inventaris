@@ -52,6 +52,7 @@ public class JwtUtils {
 			return true;
 		} catch (SignatureException e) {
 			logger.error("Invalid JWT signature: {}", e.getMessage());
+			// TODO THrow good error
 		} catch (MalformedJwtException e) {
 			logger.error("Invalid JWT token: {}", e.getMessage());
 		} catch (ExpiredJwtException e) {

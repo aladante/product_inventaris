@@ -9,6 +9,8 @@ import {
 	Heading,
 	useDisclosure,
 	useToast,
+	HStack,
+
 } from "@chakra-ui/react";
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { AddProductsAtLocation } from "../components/AddProduct"
@@ -58,7 +60,13 @@ const ProductsAtLocation = ({ id }) => {
 				id,
 			}
 		}).then((data) => {
-
+			toast({
+				title: "Deleted",
+				status: 'success',
+				duration: 4000,
+				isClosable: true,
+				colorScheme: "purple"
+			})
 		}).catch((e) => {
 			console.log(e)
 			toast({
@@ -123,17 +131,20 @@ const ProductsAtLocation = ({ id }) => {
 						<Box w="30%" >
 							< Text > {product.product.name} {product.expireDate} {product.amount}</Text>
 						</ Box>
-						<Box w="30%" alignItems="center">
-							<Button colorScheme="purple" variant="outline" onClick={() => onSubmitMinus(product.id)}>
-								-
-							</ Button>
-							<Button colorScheme="purple" variant="outline" onClick={() => onSubmitAdd(product.id)}>
+						<HStack w="30%" alignItems="center">
+							<Button colorScheme="purple" variant="outline"
+								onClick={() => onSubmitAdd(product.id)}>
 								+
 							</ Button>
-							<Button colorScheme="purple" variant="outline" onClick={() => onSubmitDelete(product.id)}>
+							<Button colorScheme="purple" variant="outline"
+								onClick={() => onSubmitMinus(product.id)}>
+								-
+							</ Button>
+							<Button colorScheme="red" variant="solid"
+								onClick={() => onSubmitDelete(product.id)}>
 								Thrashcan
 							</ Button>
-						</Box>
+						</HStack>
 					</Flex>
 				})
 			}
@@ -158,7 +169,7 @@ const LocationId = () => {
 			<Heading> Producten op locatie {name}</Heading>
 			<ProductsAtLocation id={id} />
 			<AddProductsAtLocation location={name} id={id} modalIsOpen={isOpen} onClose={onClose} />
-			<Button onClick={onOpen} colorScheme="purple" width="full">
+			<Button onClick={onOpen} colorScheme="purple" w="70%">
 				ADD
 			</Button>
 		</Flex>

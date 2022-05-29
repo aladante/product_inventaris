@@ -1,4 +1,4 @@
-import {  gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const LIST_PRODUCTS_ON_LOCATION = gql`
   query listProductsonLocation($id: ID!){

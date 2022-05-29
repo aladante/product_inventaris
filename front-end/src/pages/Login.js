@@ -12,18 +12,12 @@ import {
 	Input,
 	VStack
 } from "@chakra-ui/react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+
 import { AUTH_TOKEN } from "../constants/constants";
 
-const LOGIN_MUTATION = gql`
-  mutation login(
-    $username: String!
-    $password: String!
-  ) {
-    login(input : {username: $username, password: $password}) {
-      token
-    }
-  }`;
+import { LOGIN_MUTATION } from '../graphql/login_gql'
+
 
 const Login = () => {
 	const navigate = useNavigate();

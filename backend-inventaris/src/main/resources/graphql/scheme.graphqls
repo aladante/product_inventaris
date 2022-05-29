@@ -4,6 +4,8 @@ schema {
 }
 
 type Query {
+	checkJwt(jwt: String!): jwt
+
     listUser: [User]
     getUser(id: ID!): User
 
@@ -32,6 +34,10 @@ type Mutation {
 	addProductAtLocation(input: ProductLocationRequest!) : ProductLocation!
 	editProductAtLocation(input: EditProductLocationRequest!) : ProductLocation!
 	deleteProductAtLocation(id: ID!) : DeletedResponse!
+}
+
+type jwt{
+    jwt: String 
 }
 
 type DeletedResponse{

@@ -32,6 +32,12 @@ public class AuthResolver {
 		return response;
 	}
 
+	@MutationMapping(name = "checkJwt", value = "checkJwt")
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	public String checkJwt(@Argument String jwt) {
+		return jwt;
+	}
+
 	@MutationMapping(name = "createUser", value = "createUser")
 	public User createUser(@Argument SignupRequest input) {
 		return userService.createUser(input);
