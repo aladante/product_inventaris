@@ -3,10 +3,10 @@ package com.vaccinatiepunt.backendinventaris.resolvers;
 import java.util.List;
 
 import com.vaccinatiepunt.backendinventaris.entity.Location;
-import com.vaccinatiepunt.backendinventaris.entity.Product;
 import com.vaccinatiepunt.backendinventaris.entity.ProductsOnLocation;
+import com.vaccinatiepunt.backendinventaris.payload.request.EditProductLocationRequest;
 import com.vaccinatiepunt.backendinventaris.payload.request.ProductLocationRequest;
-import com.vaccinatiepunt.backendinventaris.repo.LocationRepository;
+import com.vaccinatiepunt.backendinventaris.payload.response.DeletedResponse;
 import com.vaccinatiepunt.backendinventaris.service.location.LocationService;
 import com.vaccinatiepunt.backendinventaris.service.productLocation.ProductLocationService;
 
@@ -36,17 +36,27 @@ public class ProductLocationResolver {
 
 	@MutationMapping(name = "addProductAtLocation", value = "addProductAtLocation")
 	public ProductsOnLocation createProductLocation(@Argument ProductLocationRequest input) {
-		System.out.println(input.getExpireDate());
 		return productLocationService.createProductLocation(input);
+	}
+
+	@MutationMapping(name = "editProductAtLocation", value = "editProductAtLocation")
+	public ProductsOnLocation editProductLocation(@Argument EditProductLocationRequest input) {
+		System.out.println(input.getAmount());
+		return productLocationService.editProductLocation(input.getId(), input.getAmount());
+	}
+
+	@MutationMapping(name = "deleteProductAtLocation", value = "deleteProductAtLocation")
+	public DeletedResponse deleteProductLocation(@Argument long id) {
+		productLocationService.deleteProductLocation(id);
+		DeletedResponse deletedResponse = new DeletedResponse(true);
+		return deletedResponse;
 	}
 
 	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	@SchemaMapping(typeName = "Query", value = "listProductsonLocation")
 	public List<ProductsOnLocation> getProductsOnLocation(@Argument long locationId) {
-
 		Location productOnLocation = locationService.getLocationById(locationId);
 		List<ProductsOnLocation> products = productOnLocation.getProductsOnLocation();
-
 		return products;
 	}
 }

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { AddProductsAtLocation } from "../components/AddProduct"
-import { LIST_PRODUCTS_ON_LOCATION, DELETE_PRODUCT_AT_LOCATION } from "../graphql/location_gql"
+
 
 const LIST_LOCATIONS = gql`
   query getLocation($locationId : ID!){
@@ -25,6 +25,20 @@ const LIST_LOCATIONS = gql`
 	  }
   }`;
 
+
+const LIST_PRODUCTS_ON_LOCATION = gql`
+  query listProductsonLocation($id: ID!){
+	  listProductsonLocation(locationId: $id){
+		id,
+		amount,
+		expireDate
+		product {
+			name
+		  }
+
+	  }
+  }`;
+
 const EDIT_PRODUCT_AT_LOCATION = gql`
   mutation editProductAtLocation (
     $id: ID!
@@ -32,37 +46,27 @@ const EDIT_PRODUCT_AT_LOCATION = gql`
   ) {
     editProductAtLocation (input : { id: $id , amount:  $amount}) {
 	  id
+
     }
   }`;
 
 const ProductsAtLocation = ({ id }) => {
-	const toast = useToast()
 	const { data, loading, error } = useQuery(LIST_PRODUCTS_ON_LOCATION, { variables: { id } });
-	const [deleteProductAtLocation] = useMutation(DELETE_PRODUCT_AT_LOCATION, {
-		refetchQueries: [
-			LIST_PRODUCTS_ON_LOCATION, // DocumentNode object parsed with gql
-			'listProductsonLocation' // Query name
-		],
-	})
-	const [editProductToLocation] = useMutation(EDIT_PRODUCT_AT_LOCATION, {
-		refetchQueries: [
-			LIST_PRODUCTS_ON_LOCATION, // DocumentNode object parsed with gql
-			'listProductsonLocation' // Query name
-		],
-	}
-	)
+	const toast = useToast()
+
+	const [editProductToLocation] = useMutation(EDIT_PRODUCT_AT_LOCATION)
+
 
 	const onSubmitDelete = (id) => {
-		deleteProductAtLocation({
+		editProductToLocation({
 			variables: {
 				id,
 			}
 		}).then((data) => {
 
 		}).catch((e) => {
-			console.log(e)
 			toast({
-				title: "error",
+				title: { e },
 				status: 'error',
 				duration: 4000,
 				isClosable: true,
@@ -80,9 +84,8 @@ const ProductsAtLocation = ({ id }) => {
 		}).then((data) => {
 
 		}).catch((e) => {
-			console.log(e)
 			toast({
-				title: "error",
+				title: 'Product at location Already exists.',
 				status: 'error',
 				duration: 4000,
 				isClosable: true,
@@ -100,7 +103,6 @@ const ProductsAtLocation = ({ id }) => {
 		}).then((data) => {
 
 		}).catch((e) => {
-			console.log(e)
 			toast({
 				title: "error",
 				status: 'error',

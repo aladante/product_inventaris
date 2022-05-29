@@ -3,11 +3,9 @@ import { Formik, Field } from "formik";
 import {
 	Box,
 	Button,
-	Checkbox,
 	Flex,
 	FormControl,
 	FormLabel,
-	FormErrorMessage,
 	Input,
 	VStack,
 	useToast
@@ -26,7 +24,6 @@ const ADD_PRODUCT_MUTATION = gql`
 
 const AddProduct = () => {
 	const toast = useToast()
-	console.log("leantje")
 	const [addProduct] = useMutation(ADD_PRODUCT_MUTATION)
 
 	const onSubmit = (values) => {

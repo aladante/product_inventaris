@@ -92,4 +92,15 @@ public class ProductLocationServiceImpl implements ProductLocationService {
 		return true;
 	}
 
+	// TODO FIX EXPETION
+	@Override
+	public ProductsOnLocation editProductLocation(long id, int amount) {
+		ProductsOnLocation productsOnLocation = productLocationRepository.findById(id)
+				.orElseThrow(() -> new ProductNotFoundException(id));
+
+		int old_amount = productsOnLocation.getAmount();
+		productsOnLocation.setAmount(old_amount + amount);
+		productLocationRepository.save(productsOnLocation);
+		return productsOnLocation;
+	}
 }

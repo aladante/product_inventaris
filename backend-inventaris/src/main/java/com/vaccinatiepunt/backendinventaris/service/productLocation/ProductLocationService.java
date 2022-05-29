@@ -15,6 +15,8 @@ public interface ProductLocationService {
 
 	ProductsOnLocation createProductLocation(ProductLocationRequest productsOnLocation);
 
+	ProductsOnLocation editProductLocation(long id, int amount);
+
 	Boolean productLocationExists(long id);
 
 	Boolean deleteProductLocation(long id);

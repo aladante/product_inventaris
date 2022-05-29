@@ -30,6 +30,12 @@ type Mutation {
 	createLocation(input: LocationRequest!) : Location!
 
 	addProductAtLocation(input: ProductLocationRequest!) : ProductLocation!
+	editProductAtLocation(input: EditProductLocationRequest!) : ProductLocation!
+	deleteProductAtLocation(id: ID!) : DeletedResponse!
+}
+
+type DeletedResponse{
+    deleted: Boolean
 }
 
 type User {
@@ -87,6 +93,11 @@ input LocationRequest{
     street: String!
     city: String!
     number: Int!
+}
+
+input EditProductLocationRequest{
+    id: ID!
+	amount :Int!
 }
 
 input ProductLocationRequest{
