@@ -123,44 +123,42 @@ const ProductsAtLocation = ({ id }) => {
 
 	if (error) return `Error! ${error.message}`
 
-	return <Box bg="gray.100" >
-		< VStack w="100vw" alignItems="center" >
-			{
-				data.listProductsonLocation.map((product) => {
-					return <Flex key={product.id} w="80%" rounded="md"
-						padding="1em" justifyItems="center" alignItems="center" bg="gray.200" boxShadow="md">
-						<Flex alignItems="center" wrap="wrap" justifyContent="center">
-							<Flex direction="column" justifyContent="center">
-								<Box >
-									< Text >name :{product.product.name}</Text>
-								</Box>
-								<Box >
-									< Text >Expires :{product.expireDate} </Text>
-								</Box>
-								<Box >
-									< Text >Amount :{product.amount}</Text>
-								</Box>
-							</ Flex>
-							<Box padding="1em" >
-								<Button colorScheme="purple" variant="outline"
-									onClick={() => onSubmitAdd(product.id)}>
-									+
-								</ Button>
-								<Button colorScheme="purple" variant="outline"
-									onClick={() => onSubmitMinus(product.id)}>
-									-
-								</ Button>
-								<Button colorScheme="red" variant="solid"
-									onClick={() => onSubmitDelete(product.id)}>
-									Thrashcan
-								</ Button>
+	return < VStack alignItems="center" >
+		{
+			data.listProductsonLocation.map((product) => {
+				return <Flex key={product.id} rounded="md"
+					padding="1em" justifyItems="center" alignItems="center" bg="gray.200" boxShadow="md" wrap="wrap" >
+				<Flex alignItems="center" wrap="wrap" justifyContent="center">
+						<Flex direction="column" justifyContent="center">
+							<Box >
+								< Text >name :{product.product.name}</Text>
+							</Box>
+							<Box >
+								< Text >Expires :{product.expireDate} </Text>
+							</Box>
+							<Box >
+								< Text >Amount :{product.amount}</Text>
 							</Box>
 						</ Flex>
-					</Flex>
-				})
-			}
-		</VStack >
-	</Box >
+						<Box padding="1em" >
+							<Button colorScheme="purple" variant="outline"
+								onClick={() => onSubmitAdd(product.id)}>
+								+
+							</ Button>
+							<Button colorScheme="purple" variant="outline"
+								onClick={() => onSubmitMinus(product.id)}>
+								-
+							</ Button>
+							<Button colorScheme="red" variant="solid"
+								onClick={() => onSubmitDelete(product.id)}>
+								Thrashcan
+							</ Button>
+						</Box>
+					</ Flex>
+				</Flex>
+			})
+		}
+	</VStack >
 }
 
 
@@ -176,15 +174,17 @@ const LocationId = () => {
 	const { getLocation: { name, city, street, id } } = data
 
 	return (
-		<Flex direction="column" align="center" bg="gray.100" paddingY="2" minH="90vh" >
-			<Heading> Producten op locatie {name}</Heading>
-			<Box padding="1em">
-				<Button onClick={onOpen} colorScheme="purple" size="lg" >
-					Add new product
-				</Button>
-			</Box>
-			<ProductsAtLocation id={id} />
-			<AddProductsAtLocation location={name} id={id} modalIsOpen={isOpen} onClose={onClose} />
+		<Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
+			<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" overflow="scroll" >
+				<Heading> Producten op locatie {name}</Heading>
+				<Box padding="1em">
+					<Button onClick={onOpen} colorScheme="purple" size="lg" >
+						Add new product
+					</Button>
+				</Box>
+				<ProductsAtLocation id={id} />
+				<AddProductsAtLocation location={name} id={id} modalIsOpen={isOpen} onClose={onClose} />
+			</VStack>
 		</Flex>
 	)
 }

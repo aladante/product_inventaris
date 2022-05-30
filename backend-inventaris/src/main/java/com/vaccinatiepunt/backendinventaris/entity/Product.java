@@ -2,7 +2,6 @@ package com.vaccinatiepunt.backendinventaris.entity;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +33,7 @@ public class Product {
 	@OneToMany(mappedBy = "product")
 	List<ProductsOnLocation> productsOnLocation;
 	String name;
+
 	Date expireDate;
 
 	public Long getId() {

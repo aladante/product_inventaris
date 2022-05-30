@@ -34,10 +34,6 @@ const Homepage = () => {
 		<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" height="80%">
 			<Heading paddingTop="1em"> MENU </Heading>
 			<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
-				PRODUCT)} colorScheme="purple" width="full">
-				product
-			</Button>
-			<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
 				LOCATION)} colorScheme="purple" width="full">
 				Location
 			</Button>
