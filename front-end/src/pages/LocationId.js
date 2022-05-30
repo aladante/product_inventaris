@@ -9,7 +9,6 @@ import {
 	Heading,
 	useDisclosure,
 	useToast,
-	HStack,
 
 } from "@chakra-ui/react";
 import { useQuery, gql, useMutation } from '@apollo/client';
@@ -123,38 +122,44 @@ const ProductsAtLocation = ({ id }) => {
 
 	if (error) return `Error! ${error.message}`
 
+	let array_with_data = data.listProductsonLocation.slice()
+
+	array_with_data.sort((left, right) => {
+		var product_name_order = left.product.name.localeCompare(right.product.name);
+		var expire_date = new Date(left.expireDate) - new Date(right.expireDate);
+		return product_name_order || -expire_date;
+	})
+
 	return < VStack alignItems="center" >
 		{
-			data.listProductsonLocation.map((product) => {
+			array_with_data.map((product) => {
 				return <Flex key={product.id} rounded="md"
-					padding="1em" justifyItems="center" alignItems="center" bg="gray.200" boxShadow="md" wrap="wrap" >
-				<Flex alignItems="center" wrap="wrap" justifyContent="center">
-						<Flex direction="column" justifyContent="center">
-							<Box >
-								< Text >name :{product.product.name}</Text>
-							</Box>
-							<Box >
-								< Text >Expires :{product.expireDate} </Text>
-							</Box>
-							<Box >
-								< Text >Amount :{product.amount}</Text>
-							</Box>
-						</ Flex>
-						<Box padding="1em" >
-							<Button colorScheme="purple" variant="outline"
-								onClick={() => onSubmitAdd(product.id)}>
-								+
-							</ Button>
-							<Button colorScheme="purple" variant="outline"
-								onClick={() => onSubmitMinus(product.id)}>
-								-
-							</ Button>
-							<Button colorScheme="red" variant="solid"
-								onClick={() => onSubmitDelete(product.id)}>
-								Thrashcan
-							</ Button>
+					padding="1em" bg="gray.200" boxShadow="md" wrap="wrap" minWidth="40%" >
+					<Flex direction="column" justifyContent="center" >
+						<Box >
+							< Text >name :{product.product.name}</Text>
+						</Box>
+						<Box >
+							< Text >Expires :{product.expireDate} </Text>
+						</Box>
+						<Box >
+							< Text >Amount :{product.amount}</Text>
 						</Box>
 					</ Flex>
+					<Box padding="1em" >
+						<Button colorScheme="purple" variant="outline"
+							onClick={() => onSubmitAdd(product.id)}>
+							+
+						</ Button>
+						<Button colorScheme="purple" variant="outline"
+							onClick={() => onSubmitMinus(product.id)}>
+							-
+						</ Button>
+						<Button colorScheme="red" variant="solid"
+							onClick={() => onSubmitDelete(product.id)}>
+							Thrashcan
+						</ Button>
+					</Box>
 				</Flex>
 			})
 		}
@@ -175,7 +180,7 @@ const LocationId = () => {
 
 	return (
 		<Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
-			<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" overflow="scroll" >
+			<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" overflowY="scroll" >
 				<Heading> Producten op locatie {name}</Heading>
 				<Box padding="1em">
 					<Button onClick={onOpen} colorScheme="purple" size="lg" >
