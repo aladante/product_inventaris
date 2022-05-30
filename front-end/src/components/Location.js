@@ -36,10 +36,10 @@ export const Locations = () => {
 				>
 				</Input>
 			</Box>
-			<VStack name='ching' spacing={4} overflowY="scroll" maxH="80" >
+			<VStack spacing={4} overflowY="scroll" maxH="80" >
 				{
 					locations.filter(loca => loca.name.includes(locationInput) || locationInput === "").map((loca) => (
-						<Box key={loca.id}  >
+						<Box key={loca.id} width="full" >
 							<Button width="full" colorScheme="purple" maxW="container.sm"
 								onClick={() => navigate(LOCATION + "/" + loca.id)}>
 								<Flex wrap="wrap" direction="column">

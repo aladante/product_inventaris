@@ -50,6 +50,10 @@ const Homepage = () => {
 						ADDLOCATION)} colorScheme="purple" width="full">
 						add Location
 					</Button>
+					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
+						ADDPRODUCT)} colorScheme="purple" width="full">
+						add user
+					</Button>
 				</>
 			}
 			<Locations />
