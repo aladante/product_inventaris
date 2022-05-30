@@ -4,10 +4,11 @@ import {
 	Button,
 	Heading,
 	VStack,
-	Flex,
+	Flex, Box
 } from "@chakra-ui/react";
 
 import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION, LOGIN } from '../constants/routeConstants'
+import { Locations } from "../components/Location"
 import { CHECK_JWT } from '../graphql/login_gql'
 import { AUTH_TOKEN } from '../constants/constants'
 import { useQuery } from '@apollo/client';
@@ -31,7 +32,7 @@ const Homepage = () => {
 
 
 	return <Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
-		<VStack alignItems="center" spacing="4" background="white" width="70%" margin="2em" height="80%">
+		<VStack alignItems="center" spacing="4" background="white" minW="70%" margin="2em" >
 			<Heading paddingTop="1em"> MENU </Heading>
 			<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
 				LOCATION)} colorScheme="purple" width="full">
@@ -51,6 +52,7 @@ const Homepage = () => {
 					</Button>
 				</>
 			}
+			<Locations />
 		</VStack>
 	</Flex>
 }

@@ -10,23 +10,20 @@ import {
 	VStack,
 	useToast
 } from "@chakra-ui/react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
+import { ADD_LOCATION_MUTATATION, LIST_LOCATIONS } from "../graphql/location_gql"
 
-const ADD_PRODUCT_MUTATION = gql`
-  mutation createLocation(
-    $street: String!
-    $number: Int!
-    $city: String!
-    $name: String!
-  ) {
-    createLocation(input : {name: $name, city: $city, number: $number, street : $street }) {
-     name 
-    }
-  }`;
 
 const AddLocation = () => {
 	const toast = useToast()
-	const [addLocation] = useMutation(ADD_PRODUCT_MUTATION)
+	const [addLocation] = useMutation(ADD_LOCATION_MUTATATION,
+		{
+			refetchQueries: [
+				LIST_LOCATIONS, // DocumentNode object parsed with gql
+				'listLocations' // Query name
+			],
+		}
+	)
 
 	const onSubmit = (values) => {
 
