@@ -10,3 +10,27 @@ services:
     ports:
       - '5432:5432'
 
+  backend:
+    build:
+      context: ./backend-inventaris
+      dockerfile: Dockerfile
+    container_name: backend 
+    ports:
+      - 8080:8080 
+    expose:
+      - 8080 
+    depends_on : 
+      - db
+
+  front-end:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    container_name: front-end 
+    ports:
+      - 80:80 
+    expose:
+      - 80 
+    depends_on : 
+      - db
+    
