@@ -27,6 +27,7 @@ public class LocationResolver {
 	@Autowired
 	LocationService locationService;
 
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	@MutationMapping(name = "createLocation", value = "createLocation")
 	public Location createLocation(@Argument LocationRequest input) {
 		return locationService.createLocation(input);

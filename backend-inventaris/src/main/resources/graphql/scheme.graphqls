@@ -37,7 +37,7 @@ type Mutation {
 }
 
 type jwt{
-    jwt: String 
+    jwt: Boolean! 
 }
 
 type DeletedResponse{

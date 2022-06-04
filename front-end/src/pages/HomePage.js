@@ -22,14 +22,12 @@ const Homepage = () => {
 
 	if (jwt) { role = getRole(jwt) };
 
-	if (loading) {
-		return 'Loading...checkJwt'
-	}
-
+	if (loading) return 'Loading...'
 	if (error) {
-		navigate(LOGIN)
+		if (error.message === "Unauthorized") {
+			navigate(LOGIN)
+		}
 	}
-
 
 	return <Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
 		<VStack alignItems="center" spacing="4" background="white" minW="70%" margin="2em" >
@@ -39,6 +37,10 @@ const Homepage = () => {
 				Location
 			</Button>
 
+			<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
+				ADDPRODUCT)} colorScheme="purple" width="full">
+				Total overiew
+			</Button>
 			{role !== "ROLE_ADMIN" ? < > </> :
 				<>
 					<Heading paddingTop="1em"> ADMIN MENU </Heading>
