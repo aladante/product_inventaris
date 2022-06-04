@@ -1,0 +1,7 @@
+dependencies:
+  - name: postgresserver
+    version: 1.0.0
+    repository:  "file://charts/postgresserver"
+  - name: vaccinatie-punt-inventaris-backend
+    version: 1.0.0
+    repository:  "file://charts/vaccinatie-punt-inventaris-backend"

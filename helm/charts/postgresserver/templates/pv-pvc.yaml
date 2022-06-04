@@ -1,0 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .Values.persistentVolumeName }}
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: {{ .Values.persistentVolumeStorage }}
+  hostPath:
+    path: /data/postgres1
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.volumeClaimName }}
+  labels:
+    app: {{ include "helm-chart.name" . }}
+spec:  
+  accessModes:
+    - ReadWriteMany
+  storageClassName: manual
+  resources:
+    requests:
+      storage: {{ .Values.persistentVolumeStorage }}

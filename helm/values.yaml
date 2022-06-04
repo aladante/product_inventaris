@@ -1,0 +1,71 @@
+
+replicaCount: 1
+
+image:
+  repository: vaccinatie_punt_inventaris-main-frontend
+  tag: latest
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+  name: "vaccinatie-punt-inventaris-frontend-service"
+  nodePort: 31000
+
+secret:
+  name: frontend-env-secret
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+envFrontend:
+  secret:
+    REACT_APP_API_URL: "http://vaccinatie-punt-inventaris-backend-service:8080/graphql"
+
+nodeSelector: {}
+
+postgresserver:
+  image: 
+    repository: vaccinatie_punt_inventaris-main-postgres
+    tag: latest
+    pullPolicy: Always
+  volumeClaimName: postgres-pv-claim
+  persistentVolumeName: task-pv-volume
+  resources: {}
+  service: 
+    port: 5432
+  envDb:
+    normal: 
+      POSTGRES_URL: "jdbc:postgresql://postgresservice:5432/vaccinatiepunt_inventaris"
+    secret:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: vaccinatiepunt_inventaris
+
+vaccinatie-punt-inventaris-backend:
+  image: 
+    repository: vaccinatie_punt_inventaris-main-backend
+    tag: latest
+    pullPolicy: Always
+  resources: {}
+  service: 
+    type: NodePort
+    port: 8080
+    nodePort: 30808
+  envBackend:
+    secret:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_URL: "jdbc:postgresql://postgresservice:5432/vaccinatiepunt_inventaris"

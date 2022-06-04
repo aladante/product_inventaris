@@ -1,0 +1,9 @@
+dependencies:
+- name: postgresserver
+  repository: file://charts/postgresserver
+  version: 1.0.0
+- name: vaccinatie-punt-inventaris-backend
+  repository: file://charts/vaccinatie-punt-inventaris-backend
+  version: 1.0.0
+digest: sha256:9a9ba4616d5e25e7d6ffd1140cf46911524bb4eed64d9d0a3d10ba4600a70640
+generated: "2022-06-02T08:07:03.841499472+05:30"
