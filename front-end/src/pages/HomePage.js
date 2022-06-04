@@ -4,10 +4,10 @@ import {
 	Button,
 	Heading,
 	VStack,
-	Flex, Box
+	Flex,
 } from "@chakra-ui/react";
 
-import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION, LOGIN } from '../constants/routeConstants'
+import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
 import { Locations } from "../components/Location"
 import { CHECK_JWT } from '../graphql/login_gql'
 import { AUTH_TOKEN } from '../constants/constants'
@@ -36,9 +36,8 @@ const Homepage = () => {
 				LOCATION)} colorScheme="purple" width="full">
 				Location
 			</Button>
-
 			<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
-				ADDPRODUCT)} colorScheme="purple" width="full">
+				ALLPRODUCT)} colorScheme="purple" width="full">
 				Total overiew
 			</Button>
 			{role !== "ROLE_ADMIN" ? < > </> :
@@ -53,7 +52,7 @@ const Homepage = () => {
 						add Location
 					</Button>
 					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
-						ADDPRODUCT)} colorScheme="purple" width="full">
+						REGISTRATION)} colorScheme="purple" width="full">
 						add user
 					</Button>
 				</>

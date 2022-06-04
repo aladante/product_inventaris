@@ -1,9 +1,13 @@
 export const BASE = "/";
 export const HOME = "/";
+
 export const LOGIN = "/login";
 export const REGISTRATION = "/signup";
+
 export const PRODUCT = "/product";
 export const ADDPRODUCT = "/product/add";
+export const ALLPRODUCT = "/products";
+
 export const LOCATION = "/location";
 export const LOCATIONWITHSLUG = "/location/:id";
 export const ADDLOCATION = "/location/add";

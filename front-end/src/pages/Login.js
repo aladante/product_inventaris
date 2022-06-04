@@ -10,7 +10,8 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	Input,
-	VStack
+	VStack,
+	useToast
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 
@@ -22,10 +23,9 @@ import { LOGIN_MUTATION } from '../graphql/login_gql'
 const Login = () => {
 	const navigate = useNavigate();
 	const [login] = useMutation(LOGIN_MUTATION)
+	const toast = useToast()
 
 	const onSubmit = (values) => {
-		console.log(values)
-
 		login({
 			variables: {
 				...values,
@@ -34,7 +34,13 @@ const Login = () => {
 			localStorage.setItem(AUTH_TOKEN, data.data.login.token)
 			navigate("/")
 		}).catch((e) => {
-			console.log(e)
+			toast({
+				title: "Email or password is incorrect",
+				status: 'error',
+				duration: 4000,
+				isClosable: true,
+				colorScheme: "purple"
+			})
 		})
 	};
 

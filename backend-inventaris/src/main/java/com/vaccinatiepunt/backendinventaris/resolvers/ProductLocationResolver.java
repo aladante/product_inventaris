@@ -34,17 +34,20 @@ public class ProductLocationResolver {
 	@Autowired
 	LocationService locationService;
 
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	@MutationMapping(name = "addProductAtLocation", value = "addProductAtLocation")
 	public ProductsOnLocation createProductLocation(@Argument ProductLocationRequest input) {
 		return productLocationService.createProductLocation(input);
 	}
 
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	@MutationMapping(name = "editProductAtLocation", value = "editProductAtLocation")
 	public ProductsOnLocation editProductLocation(@Argument EditProductLocationRequest input) {
 		System.out.println(input.getAmount());
 		return productLocationService.editProductLocation(input.getId(), input.getAmount());
 	}
 
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
 	@MutationMapping(name = "deleteProductAtLocation", value = "deleteProductAtLocation")
 	public DeletedResponse deleteProductLocation(@Argument long id) {
 		productLocationService.deleteProductLocation(id);
@@ -58,5 +61,12 @@ public class ProductLocationResolver {
 		Location productOnLocation = locationService.getLocationById(locationId);
 		List<ProductsOnLocation> products = productOnLocation.getProductsOnLocation();
 		return products;
+	}
+
+	@PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+	@SchemaMapping(typeName = "Query", value = "listProductsonLocations")
+	public List<ProductsOnLocation> getProductsOnLocations() {
+		List<ProductsOnLocation> productsOnLocations = productLocationService.listProductsOnLocation();
+		return productsOnLocations;
 	}
 }

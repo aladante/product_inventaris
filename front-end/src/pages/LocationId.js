@@ -15,6 +15,7 @@ import {
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { AddProductsAtLocation } from "../components/AddProduct"
 import { LIST_PRODUCTS_ON_LOCATION, DELETE_PRODUCT_AT_LOCATION } from "../graphql/location_gql"
+import { ALL_PRODUCTS_ON_LOCATION_QUERY } from "../graphql/product_gql"
 
 const LIST_LOCATIONS = gql`
   query getLocation($locationId : ID!){
@@ -43,13 +44,17 @@ const ProductsAtLocation = ({ id }) => {
 	const [deleteProductAtLocation] = useMutation(DELETE_PRODUCT_AT_LOCATION, {
 		refetchQueries: [
 			LIST_PRODUCTS_ON_LOCATION, // DocumentNode object parsed with gql
-			'listProductsonLocation' // Query name
+			'listProductsonLocation', // Query name
+			ALL_PRODUCTS_ON_LOCATION_QUERY, // DocumentNode object parsed with gql
+			'listProductsonLocations' // Query name
 		],
 	})
 	const [editProductToLocation] = useMutation(EDIT_PRODUCT_AT_LOCATION, {
 		refetchQueries: [
 			LIST_PRODUCTS_ON_LOCATION, // DocumentNode object parsed with gql
-			'listProductsonLocation' // Query name
+			'listProductsonLocation', // Query name
+			ALL_PRODUCTS_ON_LOCATION_QUERY, // DocumentNode object parsed with gql
+			'listProductsonLocations' // Query name
 		],
 	}
 	)
@@ -135,7 +140,7 @@ const ProductsAtLocation = ({ id }) => {
 		{
 			array_with_data.map((product) => {
 				return (
-					<VStack key={product.id} padding={4} rounded="md" bg="gray.200" boxShadow="md"  minWidth="40%" >
+					<VStack key={product.id} padding={4} rounded="md" bg="gray.200" boxShadow="md" minWidth="40%" >
 						<VStack direction="column" justify="center" align="center" width="full">
 							<Box >
 								< Text >name : {product.product.name}</Text>

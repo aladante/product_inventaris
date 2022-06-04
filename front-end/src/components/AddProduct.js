@@ -21,6 +21,7 @@ import {
 
 import { useMutation, useQuery, gql } from '@apollo/client';
 import { LIST_PRODUCTS_ON_LOCATION } from "../graphql/location_gql"
+import { ALL_PRODUCTS_ON_LOCATION_QUERY } from "../graphql/product_gql"
 
 
 const ADD_PRODUCT_AT_LOCATION = gql`
@@ -52,7 +53,9 @@ export const AddProductsAtLocation = (name) => {
 	const [addProductToLocation] = useMutation(ADD_PRODUCT_AT_LOCATION, {
 		refetchQueries: [
 			LIST_PRODUCTS_ON_LOCATION, // DocumentNode object parsed with gql
-			'listProductsonLocation' // Query name
+			'listProductsonLocation', // Query name
+			ALL_PRODUCTS_ON_LOCATION_QUERY, // DocumentNode object parsed with gql
+			'listProductsonLocations' // Query name
 		],
 	})
 
@@ -82,6 +85,7 @@ export const AddProductsAtLocation = (name) => {
 
 	if (loading) return 'Loading...'
 	if (error) return `Error! ${error.message}`
+
 	return (
 		<Modal
 			isOpen={name.modalIsOpen}
