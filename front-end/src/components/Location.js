@@ -4,7 +4,6 @@ import {
 	Flex,
 	Button,
 	Input,
-	VStack,
 	Text
 } from "@chakra-ui/react";
 import { LOCATION } from '../constants/routeConstants'
@@ -30,7 +29,7 @@ export const Locations = () => {
 
 	return (
 
-		<Box width="80%">
+		<Box width="full">
 			<Box height="auto" paddingBottom="1">
 				<Input placeholder="search for location" onChange={handleChange}
 				>
