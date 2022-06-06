@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
 	Button,
@@ -9,18 +9,17 @@ import {
 
 import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
 import { Locations } from "../components/Location"
-import { CHECK_JWT } from '../graphql/login_gql'
-import { AUTH_TOKEN } from '../constants/constants'
+import { LIST_LOCATIONS } from '../graphql/location_gql'
 import { useQuery } from '@apollo/client';
 import { getRole } from '../utils/JwtDecoder'
 
-const Homepage = () => {
+const Homepage = ({auth}) => {
 	const navigate = useNavigate();
-	const [jwt, setJwt] = useState(localStorage.getItem(AUTH_TOKEN))
-	const { data, loading, error } = useQuery(CHECK_JWT, { variables: { jwt } })
+	const { data, loading, error } = useQuery(LIST_LOCATIONS);
 	let role
 
-	if (jwt) { role = getRole(jwt) };
+	console.log(auth)
+	if (auth) { role = getRole(auth) };
 
 	if (loading) return 'Loading...'
 	if (error) {

@@ -20,7 +20,7 @@ import { AUTH_TOKEN } from "../constants/constants";
 import { LOGIN_MUTATION } from '../graphql/login_gql'
 
 
-const Login = () => {
+const Login = ({ auth }) => {
 	const navigate = useNavigate();
 	const [login] = useMutation(LOGIN_MUTATION)
 	const toast = useToast()
@@ -31,9 +31,12 @@ const Login = () => {
 				...values,
 			}
 		}).then((data) => {
-			localStorage.setItem(AUTH_TOKEN, data.data.login.token)
+			const token = data.data.login.token
+			localStorage.setItem(AUTH_TOKEN, token)
+			auth(token)
 			navigate("/")
 		}).catch((e) => {
+			console.log(e)
 			toast({
 				title: "Email or password is incorrect",
 				status: 'error',

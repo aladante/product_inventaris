@@ -13,16 +13,18 @@ import LocationId from './pages/LocationId'
 import HomePage from './pages/HomePage'
 import SignUp from './pages/Signup'
 
+import { AUTH_TOKEN } from './constants/constants'
 
 import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION, LOCATIONWITHSLUG, ALLPRODUCT, REGISTRATION } from './constants/routeConstants'
 
 const App = () => {
+	const [jwt, setJwt] = useState(localStorage.getItem(AUTH_TOKEN))
 	return (
 		<>
 			<Routes>
-				<Route path={LOGIN} element={<Login />} />
+				<Route path={LOGIN} element={<Login auth={setJwt} />} />
 				<Route path={REGISTRATION} element={<SignUp />} />
-				<Route path={BASE} element={<HomePage />} />
+				<Route path={BASE} element={<HomePage auth={jwt}/>} />
 
 				<Route path={LOCATION} element={<Location />} />
 				<Route path={LOCATIONWITHSLUG} element={<LocationId />} />
