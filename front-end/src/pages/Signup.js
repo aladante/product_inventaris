@@ -4,7 +4,6 @@ import { Formik, Field } from "formik";
 import {
 	Box,
 	Button,
-	Checkbox,
 	Flex,
 	FormControl,
 	FormLabel,
@@ -15,11 +14,7 @@ import {
 	Heading
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
-
-import { AUTH_TOKEN } from "../constants/constants";
-
-import { LOGIN_MUTATION, SIGNUP_MUTATION } from '../graphql/login_gql'
-
+import { SIGNUP_MUTATION } from '../graphql/login_gql'
 import { HOME } from '../constants/routeConstants';
 
 

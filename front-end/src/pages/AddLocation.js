@@ -8,14 +8,19 @@ import {
 	FormLabel,
 	Input,
 	VStack,
-	useToast
+	useToast,
+	Heading
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { ADD_LOCATION_MUTATATION, LIST_LOCATIONS } from "../graphql/location_gql"
+import { useNavigate } from 'react-router-dom';
+import { HOME } from '../constants/routeConstants';
 
 
 const AddLocation = () => {
 	const toast = useToast()
+
+	const navigate = useNavigate();
 	const [addLocation] = useMutation(ADD_LOCATION_MUTATATION,
 		{
 			refetchQueries: [
@@ -55,6 +60,14 @@ const AddLocation = () => {
 	return (
 		<Flex bg="gray.100" align="center" justify="center" h="100vh">
 			<Box bg="white" p={6} rounded="md" w={64}>
+
+				<Flex width="full" justify="space-around">
+					<Heading> Choose location</Heading>
+					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
+						HOME)} colorScheme="purple" width="min-content">
+						HOME
+					</Button>
+				</Flex>
 				<Formik
 					initialValues={{
 						name: "",

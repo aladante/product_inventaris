@@ -8,9 +8,12 @@ import {
 	FormLabel,
 	Input,
 	VStack,
-	useToast
+	useToast,
+	Heading
 } from "@chakra-ui/react";
 import { gql, useMutation } from "@apollo/client";
+import { useNavigate } from 'react-router-dom';
+import { HOME } from '../constants/routeConstants';
 
 const ADD_PRODUCT_MUTATION = gql`
   mutation createProduct(
@@ -25,6 +28,7 @@ const ADD_PRODUCT_MUTATION = gql`
 const AddProduct = () => {
 	const toast = useToast()
 	const [addProduct] = useMutation(ADD_PRODUCT_MUTATION)
+	const navigate = useNavigate();
 
 	const onSubmit = (values) => {
 
@@ -56,6 +60,13 @@ const AddProduct = () => {
 	return (
 		<Flex bg="gray.100" align="center" justify="center" h="100vh">
 			<Box bg="white" p={6} rounded="md" w={64}>
+				<Flex width="full" justify="space-around">
+					<Heading> Choose location</Heading>
+					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
+						HOME)} colorScheme="purple" width="min-content">
+						HOME
+					</Button>
+				</Flex>
 				<Formik
 					initialValues={{
 						name: "",
