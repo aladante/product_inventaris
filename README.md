@@ -1,3 +1,10 @@
+#  crucial deployment step!!!!
+order deployment
+postgres
+spring
+
+react and add ip of loadbalancer in the apolloclient file this is backend api
+
 Inventaris application
 
 Start the application

@@ -1,3 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: vaccinatiepunt
+data:
+  backend_host: 0.0.0.0
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +28,10 @@ spec:
       - name: vaccinatiepunt-frontend
         env:
           - name: BACKEND_HOST
-            value: "http://167.99.218.166:8080/graphql"
+            valueFrom:
+              configMapKeyRef:
+                name: backend-config
+                key: backend_host 
         image: gcr.io/vaccinatiepunt/vaccinatie_punt_inventaris-main-frontend:latest
         imagePullPolicy: Always
         resources: {}

@@ -104,7 +104,7 @@ const AddLocation = () => {
 									/>
 								</FormControl>
 								<Button type="submit" colorScheme="purple" width="full">
-								sumbit	
+									sumbit
 								</Button>
 							</VStack>
 						</form>
