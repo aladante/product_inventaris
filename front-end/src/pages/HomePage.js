@@ -7,7 +7,7 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 
-import { ADDPRODUCT, ADDLOCATION, PRODUCT, LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
+import { ADDPRODUCT, ADDLOCATION,  LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
 import { Locations } from "../components/Location"
 import { LIST_LOCATIONS } from '../graphql/location_gql'
 import { useQuery } from '@apollo/client';

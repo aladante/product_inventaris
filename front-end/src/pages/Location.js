@@ -2,7 +2,7 @@ import React from 'react';
 import {
 	Button,
 	Flex,
-	Heading,  VStack
+	Heading, VStack
 } from "@chakra-ui/react";
 import { Locations } from "../components/Location"
 import { useNavigate } from 'react-router-dom';
