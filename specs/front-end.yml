@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vaccinatiepunt-frontend
+  namespace: vaccinatiepunt
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: vaccinatiepunt-frontend 
+  template:
+    metadata:
+      name: vaccinatiepunt-frontend
+      labels:
+        app: vaccinatiepunt-frontend
+    spec:
+      containers:
+      - name: vaccinatiepunt-frontend
+        env:
+          - name: BACKEND_HOST
+            value: "http://167.99.218.166:8080/graphql"
+        image: gcr.io/vaccinatiepunt/vaccinatie_punt_inventaris-main-frontend:latest
+        imagePullPolicy: Always
+        resources: {}
+
+status: {}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vaccinatiepunt-frontend-svc
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: vaccinatiepunt-frontend
+  type: LoadBalancer
