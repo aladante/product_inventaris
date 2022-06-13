@@ -19,12 +19,13 @@ import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION, LOCATIONWITHSL
 
 const App = () => {
 	const [jwt, setJwt] = useState(localStorage.getItem(AUTH_TOKEN))
+
 	return (
 		<>
 			<Routes>
-				<Route path={LOGIN} element={<Login auth={setJwt} />} />
+				<Route path={LOGIN} element={<Login setJwt={setJwt} />} />
 				<Route path={REGISTRATION} element={<SignUp />} />
-				<Route path={BASE} element={<HomePage auth={jwt}/>} />
+				<Route path={BASE} element={<HomePage jwt={jwt} />} />
 
 				<Route path={LOCATION} element={<Location />} />
 				<Route path={LOCATIONWITHSLUG} element={<LocationId />} />

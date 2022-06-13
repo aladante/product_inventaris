@@ -13,27 +13,28 @@ import {
 	VStack,
 	useToast
 } from "@chakra-ui/react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useApolloClient } from "@apollo/client";
 
 import { AUTH_TOKEN } from "../constants/constants";
 
 import { LOGIN_MUTATION } from '../graphql/login_gql'
 
 
-const Login = ({ auth }) => {
+const Login = ({ setJwt }) => {
 	const navigate = useNavigate();
 	const [login] = useMutation(LOGIN_MUTATION)
 	const toast = useToast()
+	const client = useApolloClient();
 
 	const onSubmit = (values) => {
+		let token;
 		login({
 			variables: {
 				...values,
 			}
 		}).then((data) => {
-			const token = data.data.login.token
+			token = data.data.login.token
 			localStorage.setItem(AUTH_TOKEN, token)
-			auth(token)
 			navigate("/")
 		}).catch((e) => {
 			console.log(e)
@@ -45,6 +46,8 @@ const Login = ({ auth }) => {
 				colorScheme: "purple"
 			})
 		})
+
+		setJwt(token)
 	};
 
 	return (

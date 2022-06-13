@@ -15,3 +15,11 @@ export const ALL_PRODUCTS_ON_LOCATION_QUERY = gql`
     }
   }`;
 
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct(
+    $id: ID!
+  ) {
+    deleteProduct( id: $id ) {
+		  deleted
+    }
+  }`;

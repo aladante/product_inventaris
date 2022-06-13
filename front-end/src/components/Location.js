@@ -29,7 +29,7 @@ export const Locations = () => {
 
 	return (
 
-		<Box width="full">
+		<Box width="70%">
 			<Box height="auto" paddingBottom="1">
 				<Input placeholder="search for location" onChange={handleChange}
 				>
@@ -38,8 +38,8 @@ export const Locations = () => {
 			<Flex direction="column" overflowY="scroll" maxH="80" align="center" >
 				{
 					locations.filter(loca => loca.name.includes(locationInput) || locationInput === "").map((loca) => (
-						<Box key={loca.id} width="full" padding="1">
-							<Button width="full" colorScheme="purple" maxW="container.sm"
+						<Box key={loca.id} width="full" padding="1" alignSelf="center">
+							<Button width="full" colorScheme="purple" 
 								onClick={() => navigate(LOCATION + "/" + loca.id)}>
 								<Flex wrap="wrap" direction="column">
 									<Text fontSize="lg">

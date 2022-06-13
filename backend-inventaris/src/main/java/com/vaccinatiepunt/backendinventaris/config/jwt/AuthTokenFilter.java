@@ -2,7 +2,6 @@
 package com.vaccinatiepunt.backendinventaris.config.jwt;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -48,12 +47,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 				logger.info(username);
 				logger.info(userDetails.getAuthorities().toString());
 
-
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
 		} catch (Exception e) {
 			logger.error("Cannot set user authentication: {}", e);
-			// TODO NEEDS GOOD EXPETION
 		}
 
 		filterChain.doFilter(request, response);

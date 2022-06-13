@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
 	Button,
@@ -7,19 +7,19 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 
-import { ADDPRODUCT, ADDLOCATION,  LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
+import { ADDPRODUCT, ADDLOCATION, LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
 import { Locations } from "../components/Location"
 import { LIST_LOCATIONS } from '../graphql/location_gql'
 import { useQuery } from '@apollo/client';
 import { getRole } from '../utils/JwtDecoder'
 
-const Homepage = ({auth}) => {
+const Homepage = ({ jwt }) => {
 	const navigate = useNavigate();
-	const { data, loading, error } = useQuery(LIST_LOCATIONS);
+	const { data, loading, error, refetch } = useQuery(LIST_LOCATIONS);
 	let role
 
-	console.log(auth)
-	if (auth) { role = getRole(auth) };
+
+	if (jwt) { role = getRole(jwt) };
 
 	if (loading) return 'Loading...'
 	if (error) {
