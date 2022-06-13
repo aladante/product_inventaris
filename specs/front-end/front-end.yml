@@ -11,18 +11,20 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vaccinatiepunt-frontend
+  name: vaccinatiepunt-frontend-web
   namespace: vaccinatiepunt
 spec:
   replicas: 1
   selector:
       matchLabels:
         app: vaccinatiepunt-frontend 
+        tier: web
   template:
     metadata:
       name: vaccinatiepunt-frontend
       labels:
         app: vaccinatiepunt-frontend
+        tier: web
     spec:
       containers:
       - name: vaccinatiepunt-frontend
@@ -33,6 +35,8 @@ spec:
                 name: frontend-config
                 key: backend_host 
         image: gcr.io/vaccinatiepunt/vaccinatie_punt_inventaris-main-frontend:latest
+        ports:
+          - containerPort: 8080
         imagePullPolicy: Always
         resources: {}
 

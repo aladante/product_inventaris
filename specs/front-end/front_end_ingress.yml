@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: vaccinatiepunt-frontend-ingress
+  name: vaccinatiepunt-frontend-web
   annotations:
     kubernetes.io/ingress.global-static-ip-name: vaccinatiepunt-ip
   labels:
@@ -10,7 +10,7 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: vaccinatiepunt-frontend-svc
+      name: vaccinatiepunt-frontend-ingress
       port:
         number: 80
 
@@ -19,7 +19,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vaccinatiepunt-frontend-svc
+  name: vaccinatiepunt-frontend-ingress
+  labels:
+    app: vaccinatiepunt-frontend
 spec:
   selector:
     app: vaccinatiepunt-frontend
