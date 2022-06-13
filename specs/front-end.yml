@@ -30,7 +30,7 @@ spec:
           - name: BACKEND_HOST
             valueFrom:
               configMapKeyRef:
-                name: backend-config
+                name: frontend-config
                 key: backend_host 
         image: gcr.io/vaccinatiepunt/vaccinatie_punt_inventaris-main-frontend:latest
         imagePullPolicy: Always
