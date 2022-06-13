@@ -13,18 +13,20 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vaccinatiepunt-backend
+  name: vaccinatiepunt-backend-web
   namespace: vaccinatiepunt
 spec:
   replicas: 1
   selector:
       matchLabels:
         app: vaccinatiepunt-backend
+        tier: web
   template:
     metadata:
       name: vaccinatiepunt-backend
       labels:
         app: vaccinatiepunt-backend
+        tier: web
     spec:
       serviceAccountName: cloud-sql-sa
       containers:
@@ -51,18 +53,3 @@ spec:
                   name: backend-config
                   key: postgres_host
 
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: vaccinatiepunt-backend-svc
-spec:
-  ports:
-    - port: 8080
-      targetPort: 8080
-      protocol: TCP
-      name: http
-  selector:
-    app: vaccinatiepunt-backend
-  type: LoadBalancer
