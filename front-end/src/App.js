@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -13,19 +13,24 @@ import LocationId from './pages/LocationId'
 import HomePage from './pages/HomePage'
 import SignUp from './pages/Signup'
 
-import { AUTH_TOKEN } from './constants/constants'
 
+import { LIST_LOCATIONS } from './graphql/location_gql'
+import { useQuery } from '@apollo/client';
+
+import { AUTH_TOKEN } from './constants/constants.js'
 import { BASE, LOGIN, PRODUCT, LOCATION, ADDPRODUCT, ADDLOCATION, LOCATIONWITHSLUG, ALLPRODUCT, REGISTRATION } from './constants/routeConstants'
 
 const App = () => {
-	const [jwt, setJwt] = useState(localStorage.getItem(AUTH_TOKEN))
+	const check_jwt = useQuery(LIST_LOCATIONS);
+
 
 	return (
 		<>
 			<Routes>
-				<Route path={LOGIN} element={<Login setJwt={setJwt} />} />
+				<Route path={BASE}
+					element={<HomePage check_jwt={check_jwt} />} />
+				<Route path={LOGIN} element={<Login  />} />
 				<Route path={REGISTRATION} element={<SignUp />} />
-				<Route path={BASE} element={<HomePage jwt={jwt} />} />
 
 				<Route path={LOCATION} element={<Location />} />
 				<Route path={LOCATIONWITHSLUG} element={<LocationId />} />

@@ -1,4 +1,5 @@
 import { Buffer } from 'buffer';
+import { AUTH_TOKEN } from '../constants/constants'
 
 export const parseJwt = (token) => {
 	var base64Payload = token.split('.')[1];

@@ -20,11 +20,10 @@ import { AUTH_TOKEN } from "../constants/constants";
 import { LOGIN_MUTATION } from '../graphql/login_gql'
 
 
-const Login = ({ setJwt }) => {
+const Login = () => {
 	const navigate = useNavigate();
 	const [login] = useMutation(LOGIN_MUTATION)
 	const toast = useToast()
-	const client = useApolloClient();
 
 	const onSubmit = (values) => {
 		let token;
@@ -36,8 +35,8 @@ const Login = ({ setJwt }) => {
 			token = data.data.login.token
 			localStorage.setItem(AUTH_TOKEN, token)
 			navigate("/")
+			window.location.reload(false)
 		}).catch((e) => {
-			console.log(e)
 			toast({
 				title: "Email or password is incorrect",
 				status: 'error',
@@ -46,8 +45,6 @@ const Login = ({ setJwt }) => {
 				colorScheme: "purple"
 			})
 		})
-
-		setJwt(token)
 	};
 
 	return (

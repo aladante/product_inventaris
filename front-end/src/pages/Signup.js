@@ -29,7 +29,6 @@ const Signup = () => {
 				...values,
 			}
 		}).then((data) => {
-			console.log(data)
 			toast({
 				title: 'account created.',
 				status: 'success',

@@ -8,25 +8,22 @@ import {
 } from "@chakra-ui/react";
 
 import { ADDPRODUCT, ADDLOCATION, LOCATION, LOGIN, ALLPRODUCT, REGISTRATION } from '../constants/routeConstants'
+import { AUTH_TOKEN } from "../constants/constants";
 import { Locations } from "../components/Location"
-import { LIST_LOCATIONS } from '../graphql/location_gql'
-import { useQuery } from '@apollo/client';
 import { getRole } from '../utils/JwtDecoder'
 
-const Homepage = ({ jwt }) => {
+const Homepage = ({ check_jwt }) => {
 	const navigate = useNavigate();
-	const { data, loading, error, refetch } = useQuery(LIST_LOCATIONS);
-	let role
 
 
-	if (jwt) { role = getRole(jwt) };
-
-	if (loading) return 'Loading...'
-	if (error) {
-		if (error.message === "Unauthorized") {
+	if (check_jwt.loading) return 'Loading...'
+	if (check_jwt.error) {
+		if (check_jwt.error.message === "Unauthorized") {
 			navigate(LOGIN)
 		}
 	}
+
+	let role = getRole(localStorage.getItem(AUTH_TOKEN))
 
 	return <Flex bg="gray.100" alignItems="top" justifyContent="center" height="100vh">
 		<VStack alignItems="center" spacing="4" background="white" minW="70%" margin="2em" >
