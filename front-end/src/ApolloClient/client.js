@@ -4,7 +4,7 @@ import { AUTH_TOKEN } from '../constants/constants.js'
 
 
 const httpLink = new HttpLink({
-	uri: 'http://34.149.153.64:8080/graphql',
+	uri: 'http://34.111.112.34/graphql',
 	headers: {
 		Authorization: "Bearer " + localStorage.getItem(AUTH_TOKEN) || null,
 	},

@@ -10,7 +10,7 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: vaccinatiepunt-frontend-ingress
+      name: vaccinatiepunt-frontend-svc
       port:
         number: 80
 
@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vaccinatiepunt-frontend-ingress
+  name: vaccinatiepunt-frontend-svc
   labels:
     app: vaccinatiepunt-frontend
 spec:

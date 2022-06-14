@@ -1,7 +1,4 @@
-curl -X POST localhost:8080/api/auth/signup \
+curl -X POST 34.149.153.64/api/auth/signup \
 	-H "Content-Type: application/json" \
 	-d '{"username": "admin", "password": "secret", "role": ["admin"]}'
 
-curl -X POST localhost:8080/api/auth/signup \
-	-H "Content-Type: application/json" \
-	-d '{"username": "user", "password": "secret", "role": ["user"]}'
