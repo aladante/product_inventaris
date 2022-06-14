@@ -41,8 +41,6 @@ public class AuthResolver {
 	@QueryMapping(name = "checkJwt", value = "checkJwt")
 	public boolean checkJwt(@Argument String jwt) {
 		boolean valid = jwtUtils.validateJwtToken(jwt);
-		System.out.println(valid);
-		System.out.println("poopie");
 		return valid;
 	}
 
