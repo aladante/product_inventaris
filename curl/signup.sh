@@ -1,4 +1,4 @@
-curl -X POST 'http://34.111.112.34/graphql'  \
+curl -X POST 'http://vacinfi.com/graphql'  \
 	-H 'Accept: application/json, multipart/mixed' \
 	-H 'Accept-Language: en-US,en;q=0.5'  \
 	-H 'content-type: application/json'\

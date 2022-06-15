@@ -1,4 +1,4 @@
-import { ApolloClient, HttpLink, ApolloLink, InMemoryCache, concat } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
 import { AUTH_TOKEN } from '../constants/constants.js'
 

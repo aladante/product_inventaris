@@ -11,7 +11,6 @@ import {
 	useToast,
 	Heading
 } from "@chakra-ui/react";
-import AddOrDelete from "../components/AddOrDelete"
 
 import { gql, useMutation } from "@apollo/client";
 import { useNavigate } from 'react-router-dom';
@@ -28,9 +27,9 @@ const ADD_PRODUCT_MUTATION = gql`
   }`;
 
 const AddProduct = () => {
-	const toast = useToast()
 	const [addProduct] = useMutation(ADD_PRODUCT_MUTATION)
 	const navigate = useNavigate();
+	const toast = useToast()
 
 	const onSubmit = (values) => {
 
@@ -62,7 +61,7 @@ const AddProduct = () => {
 	return (
 		<Flex bg="gray.100" align="center" justify="center" h="100vh">
 			<Box bg="white" p={6} rounded="md" minW="70%" minH="70%">
-				<Flex width="full" justify="space-around">
+				<Flex width="full" justify="space-between">
 					<Heading> Add Product </Heading>
 					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
 						HOME)} colorScheme="purple" width="min-content">
@@ -97,7 +96,6 @@ const AddProduct = () => {
 						</form>
 					)}
 				</Formik>
-				<AddOrDelete />
 			</Box>
 		</Flex>
 	);
