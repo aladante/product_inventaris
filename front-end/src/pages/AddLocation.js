@@ -59,10 +59,10 @@ const AddLocation = () => {
 
 	return (
 		<Flex bg="gray.100" align="center" justify="center" h="100vh">
-			<Box bg="white" p={6} rounded="md" w={64}>
+			<Box bg="white" p={6} rounded="md" minW="70%" minH="70%">
 
-				<Flex width="full" justify="space-around">
-					<Heading> Choose location</Heading>
+				<Flex width="full" justify="space-between">
+					<Heading> Create location</Heading>
 					<Button type="submit" maxWidth="70%" variant="outline" onClick={() => navigate(
 						HOME)} colorScheme="purple" width="min-content">
 						HOME

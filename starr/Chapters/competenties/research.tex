@@ -1,0 +1,86 @@
+\competentie
+{% competentieformulier
+	\competentieformulier
+	{% toelichting
+		You have an inquisitive attitude and tend to analyse various aspects of an issue or problem from various points of view. You collate relevant information from recognised sources. You analyse this information and systematically piece it together, using this method to arrive at an opinion and a solution. You are able to use different approaches to arrive at new ideas and solutions.
+	}
+	{% deelcompetenties
+		analysis and opinion forming,% 
+		research,% 
+		creativity% 
+	}
+	{%
+		Proof
+	}
+	{%
+		This competency will always be assessed, both in your final project and in your final project report.
+	}
+	{% verwijzing naar bewijs
+		\href{https://github.com/aladante/product_inventaris}{git repo}
+	}
+}
+{% bewijzen
+	\bewijs
+	{%naam
+		Acquiring knowlegde
+	}
+	{% starr
+		\starr
+		{% betreft
+			analysis and opinion forming,
+			research
+		}
+		{% datum
+			14-05-2022
+		}
+		{% situatie
+			To complete The application I have studied three cursuses.
+			\begin{itemize}
+				\item Kubernetes
+				\item Terraform
+				\item React
+			\end{itemize}
+
+			I already have experience with spring boot but not the Graphql implementation.
+
+			I need to study the documentation to implement graphql in the backend.
+		}
+		{% taak
+			Implement a graphql backend using spring boot.
+		}
+		{% activiteiten
+			I first created a rest API. With this API I wanted to make sure the essential logic works.
+
+			When the authentication part was finished and I was able to create and login with user credentials I started working on the graphql implementation.
+
+			Graphql makes use of A completely different approach then A rest API does.
+			I learned a lot with the React cursus where there is also a section on Graphql, but that was only the front-end implementation.
+
+			So still needed to dive into the documentation to implement the back-end in Graphql.
+
+		}
+		{% resultaat
+			The end result is a back-end and front-end that communicate with each other by the usage of Graphql.
+		}
+		{% reflectie
+			A rest implementation is in my opinion more straight forward.
+			The implementation is linked based on an endpoint.
+
+			With a CRUD design the endpoint are easy to seperate and the development is straight forward.
+
+			Graphql uses schemes that are posted to the same end-point.
+			I was quite unfamiliar with this new approach of designig a application.
+
+			The whole concept took some time to fully digest.
+			But I think this application was an excelent learning experience with lots to still improve upon.
+
+		}
+		{
+			The code of the application.
+		}
+	}
+	{% bewijs
+		\href{https://github.com/aladante/product_inventaris}{git repo}
+	},
+}
+% section section name (end)

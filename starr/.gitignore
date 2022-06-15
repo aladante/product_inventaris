@@ -1,0 +1,93 @@
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# 
+.pyc
+*.pyc
+
+__pycache__/
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+media/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+
+# super sensi data
+scrts.json
+# secrets (api keys etc not in version control pls)
+secrets.json
+airflow/plugins/auth/*.json
+
+# google cloud connection authentication json
+gcpk.json
+gcpk-odoo.json
+*secret*.json
+
+static/
+# Styling stuff
+!package.json
+
+assets/bundles
+
+#
+.vscode
+
+.vim
+
+#latex
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run*
+*.toc
+
