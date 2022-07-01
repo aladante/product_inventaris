@@ -2,18 +2,28 @@
 {% competentieformulier
 	\competentieformulier
 	{% toelichting
-		You have an inquisitive attitude and tend to analyse various aspects of an issue or problem from various points of view. You collate relevant information from recognised sources. You analyse this information and systematically piece it together, using this method to arrive at an opinion and a solution. You are able to use different approaches to arrive at new ideas and solutions.
+		Je bent onderzoekend en brengt verschillende
+		aspecten van een vraagstuk of probleem vanuit
+		verschillende perspectieven in kaart. Je verzamelt
+		relevante informatie uit erkende bronnen. Je
+		analyseert deze informatie en brengt deze op
+		systematische wijze met elkaar in verband. Op basis
+		hiervan vorm je een oordeel en kom je tot een
+		oplossing. Je kunt verschillende invalshoeken
+		gebruiken om tot nieuwe ideeën en oplossingen te
+		komen.
 	}
 	{% deelcompetenties
-		analysis and opinion forming,% 
-		research,% 
-		creativity% 
+		analyse en
+		oordeelsvorming,
+		onderzoeken,
+		creativiteit
 	}
 	{%
 		Proof
 	}
 	{%
-		This competency will always be assessed, both in your final project and in your final project report.
+		Deze competentie wordt beoordeeld met behulp van een STARR
 	}
 	{% verwijzing naar bewijs
 		\href{https://github.com/aladante/product_inventaris}{git repo}
@@ -22,57 +32,59 @@
 {% bewijzen
 	\bewijs
 	{%naam
-		Acquiring knowlegde
+		Netwerk verkeer deligeren binnen een cluster
 	}
 	{% starr
 		\starr
 		{% betreft
-			analysis and opinion forming,
-			research
+			Creativiteit,
+			Analyse en
+			oordeelsvorming
 		}
 		{% datum
 			14-05-2022
 		}
 		{% situatie
-			To complete The application I have studied three cursuses.
-			\begin{itemize}
-				\item Kubernetes
-				\item Terraform
-				\item React
-			\end{itemize}
+			Voor de deployment van de applicatie gebruik ik Kubernetes.
+			Binnen een cluster kan je endpoints een IP geven om zo een hostnaam te gebruiken.
 
-			I already have experience with spring boot but not the Graphql implementation.
-
-			I need to study the documentation to implement Graphql in the backend.
 		}
 		{% taak
-			Implement a graphql backend using spring boot.
+			Onderzoeken en realisatie van het netwerk verkeer binnen de cluster zodat alles op de juiste locatie aankomt.
 		}
 		{% activiteiten
-			I first created a rest API. With this API I wanted to make sure the essential logic works.
+			Ik ben begonnen met de cursus. Hier heb ik veel essentiele informatie uit gehaald over het gebruik van Kubernetes.
 
-			When the authentication part was finished, and I was able to create and login with user credentials I started working on the Graphql implementation.
+			De klant gaf aan dat ze het graag op een host name heeft staan om het zo makkelijker te maken voor de gebruikers, een ip onhouden is niet handig en niet praktisch.
 
-			Graphql makes use of A completely different approach then A rest API does.
-			I learned a lot with the React cursus where there is also a section on Graphql, but that was only the front-end implementation.
+			Ik heb het domijn \href{http://vacinfi.com/login}{http://vacinfi.com/login} gekocht voor de werkgever en ben deze gaan gebruiken om de applicatie te tonen op het WWW.
 
-			So still needed to dive into the documentation to implement the back-end in Graphql.
+			Het probleem waar ik mee zat is dat ik niet 2 outgoing services wou hebben.
+			Ik wil 1 domein hebben waar het domein aan gekoppeld is.
+
+			Met react compile ik een efficiente versie die de pagina servert via NGINX.
+			NGINX stuur op aanvraag van het domijn de juiste statische pagina's door naar de gebruiker zodat de gebruiker de applicatie kan gebruiken.
+
+			Na veel testen en proberen van verschillende oplossingen, zoals /api te exposes naar end-point 1 en de root te exposes naar de react paginas of een indivuduele loadbalancer te gebruiken die het verkeer deligeert naar beide services ben ik tot een werkzame implentatie gekomen.
+
+			Mijn naar mijn zeggen creatieve oplossing maakt gebruik van de front-end service.
+			Het verkeer werd op deze service al gedeligeerd door NGINX.
+			Bij deze service heb ik de NGINX aangepast zodat het verkeer met end-point /graphql wordt gedeligeerd naar de back-end server.
+
+			Op deze manier is er 1 openbaar IP waar de hostnaam aan gekoppeld staat en komt al het verkeer aan bij de juiste services.
 
 		}
 		{% resultaat
-			The end result is a back-end and front-end that communicate with each other by the usage of Graphql.
+			Het resultaat is een werkende applicatie die draait binnen een cluster waar al het intern verkeer correct gedeligeerd wordt naar de juiste services.
 		}
 		{% reflectie
-			A rest implementation is in my opinion more straight forward.
-			The implementation is linked based on an endpoint.
+			Door te onderzoeken naar verschillende opties om netwerk verkeer binnen een cluster te deligeren naar de juiste service ben ik tot een correcte creatieve oplossing gekommen.
 
-			With a CRUD design the endpoint are easy to separate and the development is straight forward.
+			Ik moet nog ssl certificaten generen voor de applicatie zodat er SSL gebruikt wordt.
+			Dit is een stuk makkelijker nu er 1 centrale plek is waar het verkeer aankomt.
+			Op deze manier hoef ik maar 1 certificaat te onderhouden in plaats van verschillende als ik bijvoorbeeld 2 IP's had exposed naar de buiten wereld.
 
-			Graphql uses schemes that are posted to the same end-point.
-			I was quite unfamiliar with this new approach of designing a application.
-
-			The whole concept took some time to fully digest.
-			But I think this application was an excellent learning experience with lots to still improve upon.
+			Door te onderzoeken en analyseren ben ik tot verschillende opties gekozen waar ik uiteindelijk de voor mijn situatie beste oplossing heb gekozen.
 
 		}
 		{
@@ -80,7 +92,9 @@
 		}
 	}
 	{% bewijs
-		\href{https://github.com/aladante/product_inventaris}{git repo}
+		\href{https://github.com/aladante/product_inventaris}{git repo},
+		\href{https://github.com/aladante/product_inventaris/blob/main/front-end/nginx/nginx.conf}{nginx config}
+
 	},
 }
 % section section name (end)
