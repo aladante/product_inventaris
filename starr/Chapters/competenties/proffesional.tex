@@ -25,9 +25,10 @@
 		Deze competentie wordt beoordeeld door een STARR.
 	}
 	{% verwijzing naar bewijs
-		Figure~\ref{fig:terraform},
+		Figure~\ref{fig:terraform}, 
 		Figure~\ref{fig:react},
-		Figure~\ref{fig:kubernets}
+		Figure~\ref{fig:kubernets},
+		Figure ~\ref{fig:terraformcommit}
 	}
 }
 {% bewijzen
@@ -47,7 +48,7 @@
 			25-06-2022
 		}
 		{% situatie
-			Een werkgever heeft mij gevraagd een applicatie te Realizeren binnen een tijd.
+			Een werkgever heeft mij gevraagd een applicatie te realizeren binnen een tijd.
 			De applicatie moet voldoen aan de gestelde eisen van de werkgever.
 		}
 		{% taak
@@ -104,26 +105,91 @@
 		}
 	}
 	{% bewij
-		\begin{figure}
+		\begin{figure}[H]
 			\begin{center}
 				\includegraphics[width=0.95\textwidth]{images/terra.jpg}
 			\end{center}
 			\caption{Terraform}
 			\label{fig:terraform}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[H]
 			\begin{center}
 				\includegraphics[width=0.95\textwidth]{images/react.jpg}
 			\end{center}
 			\caption{React}
 			\label{fig:react}
 		\end{figure}
-		\begin{figure}
+		\begin{figure}[H]
 			\begin{center}
 				\includegraphics[width=0.95\textwidth]{images/kube.jpg}
 			\end{center}
 			\caption{Kubernetes}
 			\label{fig:kubernets}
+		\end{figure}
+
+	},
+	\bewijs
+	{% naam
+		Beter onderzoek doen naar de tools die ik wil gebruiken.
+	}
+	{% starr
+		\starr
+		{% betreft
+			Planmatig werken
+		}
+		{% datum
+			25-06-2022
+		}
+		{% situatie
+			Voor het realizeren van de applicatie had ik bepaalde techologien willen gebruiken.
+			Deze techologien heb ik aangeven een cursus voor te doen om ze daarna te kunnen toepassen in een echte situatie.
+			\begin{itemize}
+				\item Kubernetes
+				\item Terraform
+				\item React
+			\end{itemize}
+		}
+		{% taak
+			Om deze techologien te gebruiken moest ik de cursussen afmaken en vervolgens toepassen voor de applicatie.
+		}
+		{% activiteiten
+			Ik ben begonnen met react omdat het ontwikkelen van de back-end en front-end de eerste stappen zijn .
+
+			Toen de basis van de applicatie klaar was ben ik begonnen met het implementeren van de deployment stappen.
+			Met kubernetes is het duidelijk wat ik moest doen en is het mij gelukt dit te realizeren met de applicatie.
+			Voor Terraform had ik een verkeerde interpetatie wat de techologie doet en waar het gebruikt voor word.
+
+			Ik heb uiteindelijk terraform niet gebruikt bij deze applicatie.
+
+		}
+		{% resultaat
+			Omdat ik van te voren niet genoeg onderzoek heb gedaan naar de gekozen techologien kon ik mijn plan niet waarmaken.
+
+			Ik was van plan Terraform te gebruiken voor netwerk verkeer, omdat ik dacht dat Terraform hiervoor gebruikt wordt.
+
+			Pas bij het daadwerkelijk leren van de techologie kwam ik er achter dat het een compleet andere toepassing heeft die niet relevant is voor de huidige applicatie.
+		}
+		{% reflectie
+
+			Ik had een beter intieel idee nodig over hoe en waarom een techologie gebruikt wordt.
+			Ik had dit beter plan matig kunnen aanpakken door een beter voor onderzoek te doen naar het gebruik van.
+
+			Gelukkig kan ik de kennis wel gebruiken bij mijn huidige werkgever.
+			Ik heb deze kennis bijvoorbeeld gebruikt bij het maken van een automatisch ddl mechisme dat een time serie database op verschillende ontwikkeling omgegevingen maakt.
+
+			Dit had ik niet gekunt zonder de kennis die ik heb verkregen tijdens de cursus.
+		}
+		{
+		}
+	}
+	{% bewij
+
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[width=0.95\textwidth]{images/timeseries.png}
+			\end{center}
+			\caption{Een git contributie aan een Terraform commit voor een timeserie database voor VanMoof}
+			\label{fig:terraformcommit}
 		\end{figure}
 
 	},
