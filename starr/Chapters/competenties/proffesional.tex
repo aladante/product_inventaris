@@ -2,19 +2,27 @@
 {% competentieformulier
 	\competentieformulier
 	{% toelichting
-		You have acquired knowledge and skills which are vital to your becoming an ICT professional. You are able to assess the knowledge you have gained for its relevance. You use this knowledge to make well-informed decisions on how to carry out assignments and solve the issues you may encounter in professional practice. In so doing, you work methodically, set criteria which must be met by the result, and work in accordance with professional (international) ICT standards. You have an enterprising attitude.
+		Je hebt kennis en vaardigheden die belangrijk zijn voor
+		jouw rol als professional in het ict-werkveld. Je kunt de
+		kennis die je hebt opgedaan beoordelen op relevantie.
+		Op basis daarvan maak je keuzes bij het uitvoeren en
+		oplossen van praktijkvraagstukken. Je hanteert daarbij
+		een methodische werkwijze, stelt criteria op waaraan
+		het resultaat moet voldoen en werkt volgens
+		professionele (internationale) ict-standaarden.
+		Je hebt een ondernemende houding.
 	}
 	{% deelcompetenties
-		methodical approach,% 
-		ability to apply (scientific) knowledge and insights,% 
-		providing a high-quality product/service,% 
-		showing an enterprising attitude.% 
+		planmatig werken,
+		toepassing van (wetenschappelijke) kennis en inzichten,
+		kwaliteit leveren,
+		ondernemen
 	}
 	{%
 		Proof
 	}
 	{%
-		This competency will always be assessed, both in your final project and in your final project report.
+		Deze competentie wordt beoordeeld door een STARR.
 	}
 	{% verwijzing naar bewijs
 		Figure~\ref{fig:terraform},
@@ -26,51 +34,70 @@
 	\bewijs
 	{% naam
 		% TODO 
-		Learning new skills to assist my current employer better.
+		Realizeren van de applicatie.
 	}
 	{% starr
 		\starr
 		{% betreft
-			showing an enterprising attitude.% 
+			Kwaliteit leveren,
+			ondernemen,
+			Planmatig werken
 		}
 		{% datum
 			25-06-2022
 		}
 		{% situatie
-
-			When the client for the inventory system came to me to create the application I had a choice which langauge to choose and which framework.
-
-			I'm have more experience with for example with a normal old school deployment of applications.
-			But to improve and assist my current employer more I decided to learn new skills that are actively used at VanMoof.
+			Een werkgever heeft mij gevraagd een applicatie te Realizeren binnen een tijd.
+			De applicatie moet voldoen aan de gestelde eisen van de werkgever.
 		}
 		{% taak
-			Look which software and skills are used at VanMoof and use this assignment to learn and apply those skills.
+			De applicatie moet voldoen aan de gestelde eisen van de werkgever.
+
+			De werkgever heeft geen specificaties gegeven over de techologie die gebruikt moet worden voor de applicatie.
+
 		}
 		{% activiteiten
-			At VanMoof we currently use a lot of kubernetes, terraform and other cloud related stuff.
-			Also as a data engineer I have to create a lot of ETL's.
+			Voor het realizeren van de applicatie heb ik telefonisch contact gehad om duidelijk te bespreken wat de wensen van de werkgever zijn.
 
-			There are a lot of integrations and I looked for the most used and decided to improve upon those skills.
+			Op basis van deze kriteria kan ik een kwalitatief goede applicatie maken die geschikt is voor de huidige procedure tijdens een spreekuur.
+
+			Omdat de klant niet een specifieke techologie heeft aangegeven heb ik het risico genomen om de applicatie met techologien te maken waar ik zelf nog niet bekwaam mee ben.
+
+			Voor het realizeren van de applicatie ben ik planmatig begonnen met het bestuderen en leren van de inhoud van de cursussen.
+			Met deze kennis heb ik daarna de applicatie gerealiseerd.
+
+			Door correct gebruik te maken van kubernetes is het mogelijk het project snel en effiecient te updaten met minimal downtime.
+
 		}
 		{% resultaat
-			I came to the understanding that the most essential skills that I'm currently lacking are kubernetes and terraform.
+			Het resultaat is een applicatie die kan schalen naar gebruik van de user en voldoet aan de vooraf gestelde eisen van de werkgever.
 
-			I took and finished a cursuses about kubernetes, terraform and react and decided to use them in the application.
+			De applicatie kan snel worden geupdate door gebruik te maken van techologie en hier correct mee om te gaan.
+			De applicatie kan grote hoeveelheid verkeer aan dankzij kubernetes.
+			Met deze techologie is de applicatie in staat snel op te schalen om zo meer verkeer te kunnen verwerken.
 
-			The result was an application build with those previouse mentioned technologies.
-			except for terraform, I will reflect on why in the next section.
+			Door het risico te nemen om nieuwe techologien te gebruiken ben ik nu ook bekwamer bij mijn huidige werkgever dankzij de nieuwe kennis.
 		}
 		{% reflectie
-			I should have done better research on the usage of the technologies.
-			Kubernetes and react fit well with the application context.
 
-			But terraform didn't, after learning and finishing the cursus I came to a better understanding of terraform.
-			It's not a tool to manage network infrastructures but a tool to manages cloud infrastructures.
-			This means that it is able to create cloud instances such as databases or secrets for a big organization.
-			It translates the code to actual products and creates them.
-			For a single application there is no need to use terraform.
+			Het kiezen voor Kubernetes en terraform heeft het nodig stress geleverd.
+			Vooral Kubernetes was erg complex.
 
-			I'm now however able to support VanMoof with terraform by using the knowledge learned for the cursus.
+			Door planmatig te werken en op tijd te beginnen met het verwerken en leren van de cursussen heb ik genoeg tijd gehad om de applicatie op tijd te kunnen realizeren.
+
+			Het heeft veel tijd gekost om op een correcte manier gebruik te maken van Kubernetes.
+			Dit kwam omdat er veel nieuwe methodieken werden geintroduceerd die allemaal met elkaar moeten samen werken.
+
+			Het composeren van alle lossen individuelen delen zoals de load balancer, service en applicatie zelf heeft tijd gekost.
+
+			Ook is het niet gelukt terraform te gebruiken in dit project.
+			Ik gebruik dit wel actief bij mijn huidige werkgever met de nieuw behaalde kennis.
+
+
+			De reden dat het niet gebruikt is in deze applicatie heeft te maken met een verkeerde interpetatie van de techologie.
+			Terraform wordt gebruikt voor het managen van cloud componenten en niet voor het managen van een single applicatie.
+
+			Doordat ik in de eerste instantie een verkeerd beeld had van het gebruik van Terraform heb ik hier veel van geleerd.
 		}
 
 		{

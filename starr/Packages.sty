@@ -1,5 +1,5 @@
 %------ default language
-\usepackage[english]{babel}
+\usepackage[dutch]{babel}
 
 %----- images
 \usepackage{graphicx}
@@ -114,7 +114,7 @@
 		\cline{1-1}
 		{%
 			\begin{tabularx}{\linewidth}{@{}>{\hsize=.5\hsize}X|>{\hsize=1.5\hsize}X@{}}
-				\textbf{Explanation}
+				\textbf{Toelichting}
 				 &
 				#1
 				\\
@@ -124,7 +124,7 @@
 		\cline{1-1}
 		{%
 			\begin{tabularx}{\linewidth}{@{}>{\hsize=.5\hsize}X|>{\hsize=1.5\hsize}X@{}}
-				\textbf{Sub-competencies}
+				\textbf{deelcompetenties}
 				 &
 				\@for\deelcompetentie:=#2\do{
 
@@ -144,12 +144,12 @@
 		\\[7.5mm]
 		{%
 		\begin{tabularx}{\linewidth}{X}
-			\textbf{Reference to evidence} in the portfolio:
+			\textbf{Verwijzing naar bewijs} in the portfolio:
 			\\
 			\foreach \bewijsstuk[count=\num] in {#5}
 				{
 					\par
-					\hspace*{5mm} Name proof \num\ related to \MakeLowercase{"\currentname"}: \par
+					\hspace*{5mm} Bewijs \num\ Gerelateerd aan \MakeLowercase{"\currentname"}: \par
 					\hspace*{5mm} \hspace*{5mm} \currentname : \textbf{\bewijsstuk}
 
 				}
@@ -162,13 +162,13 @@
 
 \newcommand{\starr}[8]{%
 	\begin{tabularx}{\linewidth}{X}
-		\textbf{The proof concerns:} #1
+		\textbf{Het bewijs betreft:} #1
 	\end{tabularx}
 	\begin{tabularx}{\linewidth}{X}
-		\textbf{The proof relates to:}  Section: \thesubsection : \leftmark
+		\textbf{Het bewijs relateerd aan:}  Section: \thesubsection : \leftmark
 	\end{tabularx}
 	\begin{tabularx}{\linewidth}{X}
-		\textbf{Date proof:} #2
+		\textbf{Datum bewijs:} #2
 	\end{tabularx}
 	\bigskip
 	\begin{tabularx}{\linewidth}{X}
@@ -177,7 +177,7 @@
 				\cline{2-2}
 				\centering {\large\textbf{S}}
 				 &
-				\textbf{Situation:}
+				\textbf{Situatie:}
 				\\
 				 &
 				#3
@@ -193,7 +193,7 @@
 				\cline{2-2}
 				\centering {\large\textbf{T}}
 				 &
-				\textbf{Task:}
+				\textbf{Taak:}
 				\\
 				 &
 				#4
@@ -210,7 +210,7 @@
 				\cline{2-2}
 				\centering {\large\textbf{A}}
 				 &
-				\textbf{Activity:}
+				\textbf{Activiteit:}
 				\\
 				 &
 				#5
@@ -226,7 +226,7 @@
 				\cline{2-2}
 				\centering {\large\textbf{R}}
 				 &
-				\textbf{Result:}
+				\textbf{Resultaat:}
 				\\
 				 &
 				#6
@@ -242,7 +242,7 @@
 				\cline{2-2}
 				\centering {\large\textbf{R}}
 				 &
-				\textbf{Reflection:}
+				\textbf{Reflectie:}
 				\\
 				 &
 				#7
