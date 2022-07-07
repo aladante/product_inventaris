@@ -46,11 +46,10 @@
 		}
 		{% situatie
 			Voor de deployment van de applicatie gebruik ik Kubernetes.
-			Binnen een cluster kan je endpoints een IP geven om zo een hostnaam te gebruiken.
-
+			Binnen een cluster kun je endpoints een IP geven om zo een hostnaam te gebruiken.
 		}
 		{% taak
-			Onderzoeken en realisatie van het netwerk verkeer binnen de cluster zodat alles op de juiste locatie aankomt.
+			Onderzoeken en realisatie van het netwerkverkeer binnen de cluster zodat alles op de juiste locatie aankomt.
 		}
 		{% activiteiten
 			Ik ben begonnen met de cursus. Hier heb ik veel essentiele informatie uit gehaald over het gebruik van Kubernetes.
@@ -59,32 +58,32 @@
 
 			Ik heb het domijn \href{http://vacinfi.com/login}{http://vacinfi.com/login} gekocht voor de werkgever en ben deze gaan gebruiken om de applicatie te tonen op het WWW.
 
-			Het probleem waar ik mee zat is dat ik niet 2 outgoing services wou hebben.
+			Het probleem waar ik mee zat is dat ik niet 2 outgoing services wilde hebben.
 			Ik wil 1 domein hebben waar het domein aan gekoppeld is.
 
 			Met react compile ik een efficiente versie die de pagina servert via NGINX.
-			NGINX stuur op aanvraag van het domijn de juiste statische pagina's door naar de gebruiker zodat de gebruiker de applicatie kan gebruiken.
+			NGINX stuurt op aanvraag van het domein de juiste statische pagina's door naar de gebruiker zodat de gebruiker de applicatie kan gebruiken.
 
 			Na veel testen en proberen van verschillende oplossingen, zoals /api te exposes naar end-point 1 en de root te exposes naar de react paginas of een indivuduele loadbalancer te gebruiken die het verkeer deligeert naar beide services ben ik tot een werkzame implentatie gekomen.
 
-			Mijn naar mijn zeggen creatieve oplossing maakt gebruik van de front-end service.
+			Mijn naar mijn eigen zeggen creatieve oplossing maakt gebruik van de front-end service.
 			Het verkeer werd op deze service al gedeligeerd door NGINX.
 			Bij deze service heb ik de NGINX aangepast zodat het verkeer met end-point /graphql wordt gedeligeerd naar de back-end server.
 
-			Op deze manier is er 1 openbaar IP waar de hostnaam aan gekoppeld staat en komt al het verkeer aan bij de juiste services.
+			Op deze manier is er 1 openbaar IP waar de hostnaam aan gekoppeld staat en komt al het verkeer bij de juiste services aan.
 
 		}
 		{% resultaat
 			Het resultaat is een werkende applicatie die draait binnen een cluster waar al het intern verkeer correct gedeligeerd wordt naar de juiste services.
 		}
 		{% reflectie
-			Door te onderzoeken naar verschillende opties om netwerk verkeer binnen een cluster te deligeren naar de juiste service ben ik tot een correcte creatieve oplossing gekommen.
+			Door te onderzoeken naar verschillende opties om netwerk verkeer binnen een cluster te deligeren naar de juiste service ben ik tot een correcte creatieve oplossing gekomen.
 
 			Ik moet nog ssl certificaten generen voor de applicatie zodat er SSL gebruikt wordt.
 			Dit is een stuk makkelijker nu er 1 centrale plek is waar het verkeer aankomt.
 			Op deze manier hoef ik maar 1 certificaat te onderhouden in plaats van verschillende als ik bijvoorbeeld 2 IP's had exposed naar de buiten wereld.
 
-			Door te onderzoeken en analyseren ben ik tot verschillende opties gekozen waar ik uiteindelijk de voor mijn situatie beste oplossing heb gekozen.
+			Door te onderzoeken en analyseren ben ik tot verschillende opties gekozen waar ik uiteindelijk, de voor mijn situatie beste oplossing, heb gekozen.
 
 		}
 		{
