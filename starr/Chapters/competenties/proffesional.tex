@@ -25,7 +25,7 @@
 		Deze competentie wordt beoordeeld door een STARR.
 	}
 	{% verwijzing naar bewijs
-		Figure~\ref{fig:terraform}, 
+		Figure~\ref{fig:terraform},
 		Figure~\ref{fig:react},
 		Figure~\ref{fig:kubernets},
 		Figure ~\ref{fig:terraformcommit}
@@ -191,6 +191,66 @@
 			\caption{Een git contributie aan een Terraform commit voor een timeserie database voor VanMoof}
 			\label{fig:terraformcommit}
 		\end{figure}
+
+	},
+	\bewijs
+	{% naam
+		Gebruik maken van de juiste resources
+	}
+	{% starr
+		\starr
+		{% betreft
+			Kwaliteit leveren
+		}
+		{% datum
+			14-07-2022
+		}
+		{% situatie
+			Voor het maken van een applicatie maak je gebruik van packages.
+			Packages zijn oplossingen voor bepaalde problemen. Ik kan voor elke applicatie een nieuwe webserver schrijven of ik kan gebruik maken van een package die gevalideerd is door andere met goeie kwaliteit software.
+			Deze packeges worden geinstaleerd door een package manager en versnellen het ontwikkelings traject .
+		}
+		{% taak
+			De juiste packages gebruiken voor de applicatie die het gewenste resultaat leveren en stabiel zijn.
+		}
+		{% activiteiten
+			Ik ben opzoek gegaan naar welke packages ik nodig had om de graphql service te draaien.
+			Ik maak hierbij gebruik van pom een package manager voor java.
+
+			Er waren dependacie issues met bepaalde packages waardoor ik voor een testing package had gekozen.
+		}
+		{% resultaat
+			Het resultaat was een werkende applicatie met een onnodig risico.
+			De gekozen packages zijn nog in een testing stage waar de ontwikelaar nog onzekker is over de stabiliteit van de package.
+
+			Door laks heid en niet direct op zoek te gaan naar de beste oplossing bestaat er een kans op onverwachte resultaten dankzij mijn keuze.
+		}
+		{% reflectie
+
+			Door gebruik te maken van een oplossing waarbij ik kon beginnen aan het developen van de applicatie heb ik risicos genomen.
+			Ik wou te snel beginnen met het bouwen van de applicatie en heb hierom gebruik gemaakt van risico volle packages.
+
+			Ik was van plan dit te wijzigen in de toekomst maar was dit compleet vergeten in latere ontwikkelings stadia.
+			Door niet meteen gebruik te maken van een correcte oplossing heb ik een onnodig risico genomen.
+
+			In de toekomst zal ik eerst zorgen dat de fundering correct is en hier op door ontwikkelen.
+		}
+		{
+		}
+	}
+	{% bewij
+
+		Vragen om hulp met datums.
+
+		\href{https://stackoverflow.com/questions/72338020/maven-dependancy-conflict-no-such-method-with-graphql-depandancies/72426802#72426802}{Link naar stackoverflow}
+
+		https://stackoverflow.com/questions/72338020/maven-dependancy-conflict-no-such-method-with-graphql-depandancies/72426802#72426802
+
+		\newline
+
+		\href{https://www.reddit.com/r/javahelp/comments/uva0jj/graphql_method_does_not_exist_in_dependancy/}{link naar reddit post}
+
+		https://www.reddit.com/r/javahelp/comments/uva0jj/graphql_method_does_not_exist_in_dependancy/
 
 	},
 }
